@@ -1,0 +1,189 @@
+[gd_scene load_steps=15 format=3 uid="uid://cqf30i7kv1cqw"]
+
+[ext_resource type="Script" path="res://scripts/window_drag.gd" id="1_ikoyu"]
+[ext_resource type="Script" path="res://scripts/global.gd" id="1_mqoxn"]
+[ext_resource type="Script" path="res://scripts/todoItemArea.gd" id="1_s4car"]
+[ext_resource type="Script" path="res://scripts/mainWindow.gd" id="1_s7u8p"]
+[ext_resource type="Script" path="res://scripts/listGroup.gd" id="1_tru7w"]
+[ext_resource type="Theme" uid="uid://4n68pb8tm75j" path="res://others/theme/Light/light_globa.tres" id="2_bm743"]
+[ext_resource type="StyleBox" uid="uid://5bio58gaq10k" path="res://others/theme/Light/light_leftMenu.tres" id="4_77axd"]
+[ext_resource type="Script" path="res://scripts/listbutton.gd" id="4_epodi"]
+[ext_resource type="ButtonGroup" uid="uid://bgw5cquep7q1w" path="res://others/buttonGroup/listGroup.tres" id="5_ohqn4"]
+[ext_resource type="Script" path="res://scripts/deleteTodo.gd" id="7_13my2"]
+[ext_resource type="Script" path="res://scripts/contentMenuManager.gd" id="7_kws2r"]
+[ext_resource type="Theme" uid="uid://cbvr5vood78yd" path="res://others/theme/Light/light_contentMenu.tres" id="9_uiqgu"]
+[ext_resource type="Script" path="res://scripts/complete.gd" id="9_xhnu5"]
+[ext_resource type="Script" path="res://scripts/createItem.gd" id="11_dhqib"]
+
+[node name="mainWindow" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_bm743")
+script = ExtResource("1_s7u8p")
+
+[node name="background" type="Panel" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_bm743")
+
+[node name="global" type="Node" parent="."]
+script = ExtResource("1_mqoxn")
+
+[node name="leftMenu" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 160.0
+grow_vertical = 2
+theme = ExtResource("2_bm743")
+theme_override_styles/panel = ExtResource("4_77axd")
+
+[node name="title" type="Label" parent="leftMenu"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 50.0
+offset_right = 14.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme = ExtResource("2_bm743")
+theme_override_font_sizes/font_size = 32
+text = "STodo"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Node" type="Node" parent="leftMenu"]
+script = ExtResource("1_tru7w")
+group = ExtResource("5_ohqn4")
+
+[node name="yesterday" type="Button" parent="leftMenu/Node"]
+offset_left = 12.0
+offset_top = 124.0
+offset_right = 148.0
+offset_bottom = 160.0
+pivot_offset = Vector2(68, 18)
+focus_mode = 0
+theme = ExtResource("2_bm743")
+toggle_mode = true
+button_group = ExtResource("5_ohqn4")
+text = "Yesterday"
+script = ExtResource("4_epodi")
+
+[node name="today" type="Button" parent="leftMenu/Node"]
+offset_left = 12.0
+offset_top = 174.0
+offset_right = 148.0
+offset_bottom = 210.0
+pivot_offset = Vector2(68, 18)
+focus_mode = 0
+theme = ExtResource("2_bm743")
+toggle_mode = true
+button_group = ExtResource("5_ohqn4")
+text = "Today"
+script = ExtResource("4_epodi")
+
+[node name="tomorrow" type="Button" parent="leftMenu/Node"]
+offset_left = 12.0
+offset_top = 224.0
+offset_right = 148.0
+offset_bottom = 260.0
+pivot_offset = Vector2(68, 18)
+focus_mode = 0
+theme = ExtResource("2_bm743")
+toggle_mode = true
+button_group = ExtResource("5_ohqn4")
+text = "Tomorrow"
+script = ExtResource("4_epodi")
+
+[node name="todoItemArea" type="Control" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_bm743")
+script = ExtResource("1_s4car")
+
+[node name="contentMenuManager" type="Control" parent="."]
+anchors_preset = 0
+theme = ExtResource("9_uiqgu")
+script = ExtResource("7_kws2r")
+
+[node name="todoItemAreaCM" type="Panel" parent="contentMenuManager"]
+visible = false
+layout_mode = 0
+offset_left = 432.0
+offset_top = 133.0
+offset_right = 592.0
+offset_bottom = 393.0
+theme = ExtResource("9_uiqgu")
+
+[node name="createItem" type="Button" parent="contentMenuManager/todoItemAreaCM"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 155.0
+offset_bottom = 36.0
+theme = ExtResource("9_uiqgu")
+text = "Create Item
+"
+script = ExtResource("11_dhqib")
+
+[node name="todoItemCM" type="Panel" parent="contentMenuManager"]
+visible = false
+layout_mode = 0
+offset_left = 334.0
+offset_top = 71.0
+offset_right = 474.0
+offset_bottom = 291.0
+theme = ExtResource("9_uiqgu")
+
+[node name="complete" type="Button" parent="contentMenuManager/todoItemCM"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 135.0
+offset_bottom = 36.0
+theme = ExtResource("9_uiqgu")
+text = "Complete"
+script = ExtResource("9_xhnu5")
+
+[node name="deleteTodo" type="Button" parent="contentMenuManager/todoItemCM"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 41.0
+offset_right = 135.0
+offset_bottom = 72.0
+theme = ExtResource("9_uiqgu")
+text = "Delete Todo"
+script = ExtResource("7_13my2")
+
+[node name="windowDrag" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
+focus_mode = 0
+theme = ExtResource("2_bm743")
+script = ExtResource("1_ikoyu")
+
+[connection signal="gui_input" from="todoItemArea" to="todoItemArea" method="_on_gui_input"]
+[connection signal="button_down" from="contentMenuManager/todoItemAreaCM/createItem" to="contentMenuManager/todoItemAreaCM/createItem" method="_on_button_down"]
+[connection signal="button_down" from="contentMenuManager/todoItemCM/complete" to="contentMenuManager/todoItemCM/complete" method="_on_button_down"]
+[connection signal="button_down" from="contentMenuManager/todoItemCM/deleteTodo" to="contentMenuManager/todoItemCM/deleteTodo" method="_on_button_down"]
+[connection signal="button_down" from="windowDrag" to="windowDrag" method="_on_button_down"]
+[connection signal="button_up" from="windowDrag" to="windowDrag" method="_on_button_up"]

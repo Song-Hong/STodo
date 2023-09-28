@@ -1,0 +1,90 @@
+[gd_scene load_steps=6 format=3 uid="uid://bkg7bs48f1xuy"]
+
+[ext_resource type="Theme" uid="uid://byg4ifogt4eb2" path="res://others/theme/Light/light_item.tres" id="1_8wfs6"]
+[ext_resource type="Script" path="res://scripts/item.gd" id="1_b3udv"]
+[ext_resource type="Script" path="res://scripts/deadlineDate.gd" id="2_3ykb6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6c5nu"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxljc"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+corner_detail = 10
+
+[node name="item" type="Button" node_paths=PackedStringArray("IName", "Tags", "deadlineDate")]
+offset_left = 232.0
+offset_top = 101.0
+offset_right = 432.0
+offset_bottom = 301.0
+pivot_offset = Vector2(100, 100)
+focus_mode = 0
+theme = ExtResource("1_8wfs6")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6c5nu")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_sxljc")
+shortcut_feedback = false
+shortcut_in_tooltip = false
+script = ExtResource("1_b3udv")
+IName = NodePath("iName")
+Tags = NodePath("tag")
+deadlineDate = NodePath("deadlineDate")
+
+[node name="iName" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 5.0
+offset_bottom = 31.0
+grow_horizontal = 2
+theme = ExtResource("1_8wfs6")
+theme_override_colors/font_color = Color(0.286275, 0.286275, 0.286275, 1)
+theme_override_font_sizes/font_size = 16
+text = "New Todo"
+flat = true
+
+[node name="tag" type="Button" parent="."]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 148.0
+offset_right = 52.0
+offset_bottom = 173.0
+focus_mode = 0
+theme = ExtResource("1_8wfs6")
+theme_override_font_sizes/font_size = 12
+text = "Tag"
+
+[node name="deadlineDate" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -31.0
+offset_right = 6.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_mode = 0
+theme = ExtResource("1_8wfs6")
+theme_override_colors/font_color = Color(0.505882, 0.505882, 0.505882, 1)
+theme_override_font_sizes/font_size = 12
+text = "9/17 12:00"
+flat = true
+alignment = 0
+expand_icon = true
+script = ExtResource("2_3ykb6")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="mouse_entered" from="iName" to="." method="_on_i_name_mouse_entered"]
+[connection signal="text_submitted" from="iName" to="." method="_on_i_name_text_submitted"]
+[connection signal="button_down" from="deadlineDate" to="deadlineDate" method="_on_button_down"]
