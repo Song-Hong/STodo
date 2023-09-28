@@ -1,6 +1,9 @@
-res://scenes/date.tscn::980c9502eced52661bab363c0be8f497::1695818802::res://.godot/exported/133200997/export-e7b204b31eeb321da002331bc898a650-date.scn
-res://scenes/item.tscn::11244e0c9029f9455044976dbae52e17::1695818802::res://.godot/exported/133200997/export-bce8ba26930a3804a4f301fada3dc3fc-item.scn
-res://scenes/main.tscn::3119d5f982d0b32e626207c8f1973928::1695818802::res://.godot/exported/133200997/export-3ad5c15c4f3250da0cc7c1af1770d85f-main.scn
+res://scenes/date.tscn::dcad96a4c3227c545c52f8b3860c3ff4::1695885606::res://.godot/exported/133200997/export-e7b204b31eeb321da002331bc898a650-date.scn
+res://scenes/item.tscn::15e0107217cac5c3c8659f1144d63b68::1695885606::res://.godot/exported/133200997/export-bce8ba26930a3804a4f301fada3dc3fc-item.scn
+res://scenes/main.tscn::6eee02e440ef47ef93828feb9203894f::1695885606::res://.godot/exported/133200997/export-3ad5c15c4f3250da0cc7c1af1770d85f-main.scn
 res://others/buttonGroup/dayListGroup.tres::8ebf84196f24f207e36110c34985175f::1695529697::res://.godot/exported/133200997/export-0219085b61d551ac3388793c7fa50448-dayListGroup.res
 res://others/buttonGroup/listGroup.tres::6f2bed7312c509104d8e4a8aeb2cdd70::1695801572::res://.godot/exported/133200997/export-4af377e377bb39a0f86b39a3178e4588-listGroup.res
-res://others/theme/dark/dark.tres::92956a857e3c9e4a53e782d1d2e486f5::1695798916::res://.godot/exported/133200997/export-ed4a5ca401ad3403aabb24297f533144-dark.res
+res://others/theme/Light/light_contentMenu.tres::3289716a98be8d161861b01634305410::1695883943::res://.godot/exported/133200997/export-98ab385f8b516f30201bac3557b46c57-light_contentMenu.res
+res://others/theme/Light/light_globa.tres::7f33623de056c2d04e4d13c2202263b9::1695883943::res://.godot/exported/133200997/export-5cf3c82f8f36612632a3011d2d706af6-light_globa.res
+res://others/theme/Light/light_item.tres::8f8264ecbc0924be75c00f717b2e4745::1695883943::res://.godot/exported/133200997/export-75484407ee716dced66073bf9b13b46d-light_item.res
+res://others/theme/Light/light_leftMenu.tres::5e831ddd17884f6fe04cb793a7bac3a3::1695883943::res://.godot/exported/133200997/export-f9598ce5976acb79353633c7bf9edd18-light_leftMenu.res
