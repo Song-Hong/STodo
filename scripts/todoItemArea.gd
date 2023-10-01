@@ -17,9 +17,12 @@ func _on_gui_input(event):
 			Global.contentMenuManager.showContetnMenu("todoItemArea")
 
 #显示Todo页面
-func showDayTodo(list:String):
+func showDayTodo(list:String,moveDirection=1):
 	#如果请求相同,则驳回请求
 	if list == now_list:
+		return
+	if Global.animationState:
+		showDayTodoUX(list,moveDirection)
 		return
 	for item in get_children():
 		remove_child(item)
@@ -59,6 +62,8 @@ func Time2String(time):
 
 #存储
 func Save():
+	if Global.nowList == "setting" or now_list == "" :
+		return
 	var json_data = "{\n"
 	var childs = get_children()
 	for child in childs:
@@ -93,3 +98,76 @@ func MoveTo(list,json):
 	var s = FileAccess.open(path,FileAccess.WRITE)
 	s.store_string(file)
 	s.close()
+
+#显示Todo页面 动画版
+func showDayTodoUX(list:String,moveDirection=1):
+	var temporarily = Panel.new()
+	temporarily.name = "temporarily"
+	get_parent().add_child(temporarily)
+	temporarily.set_anchors_preset(Control.PRESET_FULL_RECT)
+	for item in get_children():
+		item.reparent(temporarily)
+	temporarily.move_to_front()
+	now_list = list
+	#格式化路径
+	var path = save_path%list
+	#判断文件是否存在,如果不存在则创建
+	if not FileAccess.file_exists(path):
+		var f = FileAccess.open(path,FileAccess.WRITE)
+		f.store_string("{}")
+		f.close()
+	var file = FileAccess.open(path,FileAccess.READ)
+	var json = JSON.parse_string(file.get_as_text())
+	for key in json.keys():
+		create(key,json[key])
+	
+	#判断时向上还是向下移动
+	var directionSize = 0
+	if moveDirection > 0:
+		directionSize = size.y
+	else:
+		directionSize = -size.y
+	
+	#开始播放动画
+	position = Vector2(0,directionSize)
+	var tween = get_tree().create_tween().set_parallel(true)
+	tween.tween_property(temporarily,"position",Vector2(0,-directionSize),0.3)
+	await tween.tween_property(self,"position",Vector2(0,0),0.3).finished
+	get_parent().remove_child(temporarily)
+
+#删除当前的Todo
+func removeDayTodoUX(moveDirection=1):
+	var temporarily = Panel.new()
+	temporarily.name = "temporarily"
+	get_parent().add_child(temporarily)
+	temporarily.set_anchors_preset(Control.PRESET_FULL_RECT)
+	for item in get_children():
+		item.reparent(temporarily)
+	temporarily.move_to_front()
+	now_list = ""
+	
+	#判断时向上还是向下移动
+	var directionSize = 0
+	if moveDirection > 0:
+		directionSize = size.y
+	else:
+		directionSize = -size.y
+	
+	#开始播放动画
+	position = Vector2(0,directionSize)
+	var tween = get_tree().create_tween().set_parallel(true)
+	await tween.tween_property(temporarily,"position",Vector2(0,-directionSize),0.3).finished
+	get_parent().remove_child(temporarily)
+
+#删除当前页面的全部Todo
+func removeDayTodo():
+	for item in get_children():
+		remove_child(item)
+	
+	
+	
+	
+	
+	
+	
+	

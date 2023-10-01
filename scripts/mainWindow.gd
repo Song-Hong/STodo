@@ -17,9 +17,9 @@ func _ready():
 func checkVersion():
 	var file = FileAccess.open("res://conf/core.json",FileAccess.READ)
 	var json = JSON.parse_string(file.get_as_text())
-	var version = json["version"]
-	var app_version = json["app_version"]
-
+	var _version = json["version"]
+	var _app_version = json["app_version"]
+	
 #当第一次打开该软件时,进行初始化配置
 func frist():
 	var sSize = DisplayServer.screen_get_size()
@@ -45,7 +45,7 @@ func loadConf():
 	get_window().position = Vector2(window_po[0],window_po[1])
 	$todoItemArea.showDayTodo(default_list)
 	file.close()
-	Global.nowList = default_list
+	$leftMenu/Node.init_list(default_list)
 
 #存储状态
 func saveState():

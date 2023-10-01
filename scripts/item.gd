@@ -2,10 +2,11 @@
 extends Button
 
 #内部变量
-var isdown = false   #检测鼠标是否按下
-var offset           #偏移值
-var ID     = "STodo" #唯一值
-var Start  = []      #开始时间
+var isdown    = false   #检测鼠标是否按下
+var offset              #偏移值
+var ID        = "STodo" #唯一值
+var Start     = []      #开始时间
+var INameText = ""      #当前Item的名称
 
 #外部引用
 @export var IName:LineEdit      #名称
@@ -37,6 +38,7 @@ func _on_button_down():
 	if Global.nowLineEditor != null: 
 		Global.nowLineEditor.focus_mode = Control.FOCUS_NONE
 		Global.nowLineEditor.focus_mode = Control.FOCUS_ALL
+		IName.text = formattingIName(INameText)
 
 #当鼠标抬起时,停止窗口跟手
 func _on_button_up():
@@ -71,7 +73,8 @@ func _input(_event):
 #初始化 
 func InitItem(f_ID,f_Iname,f_Position,f_Tag,f_Start,f_End):
 	ID                 = f_ID
-	IName.text         = f_Iname
+	IName.text         = formattingIName(f_Iname)
+	INameText          = f_Iname
 	position           = Vector2(f_Position[0],f_Position[1])
 	Tags.text          = str(f_Tag[0])
 	Start              = f_Start
@@ -85,7 +88,7 @@ func SetDeadlineDate(end):
 #转为Json数据
 func ToJson():
 	var json_obj  = {str(ID):{
-					 "name":IName.text,
+					 "name":INameText,
 					 "po":[position.x,position.y],
 					 "tag":["def"],
 					 "start":Start,
@@ -114,11 +117,29 @@ func NomalSize():
 		scale = Vector2(1,1)
 
 #当名称输入框按钮点击提交时
-func _on_i_name_text_submitted(new_text):
+func _on_i_name_text_submitted(_new_text):
 	IName.focus_mode = Control.FOCUS_NONE
 	IName.focus_mode = Control.FOCUS_ALL
 	Global.nowLineEditor = null
+	IName.text = formattingIName(INameText)
+	IName.warp_mouse(Vector2(0,0))
+
+#格式化IName显示的名称
+func formattingIName(content:String):
+	if len(content) > 20:
+		return content.substr(0,20)+"..."
+	return content
 
 #当名称输入框按钮点击时
 func _on_i_name_mouse_entered():
 	Global.nowLineEditor = IName
+	IName.text = INameText
+
+#当输入框文本改变时
+func _on_i_name_text_changed(new_text):
+	INameText = new_text
+
+#当输入框失去焦点时
+func _on_i_name_focus_exited():
+	IName.text = formattingIName(INameText)
+

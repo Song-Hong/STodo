@@ -1,9 +1,12 @@
-Button
-Panel
+OptionButton
 Control
-Node
-ColorRect
 Label
+MenuBar
+MenuButton
+Panel
+Node
+Button
+ColorRect
 LineEdit
 TextEdit
 Sprite2D

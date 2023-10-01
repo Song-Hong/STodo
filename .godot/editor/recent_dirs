@@ -1,8 +1,9 @@
-res://others/Icons
 /Users/song
-res://others/theme/Light
 res://scripts
 res://scenes
+res://others/buttonGroup
+res://others/Icons
+res://others/theme/Light
 res://others/font
 res://shaders
 res://others

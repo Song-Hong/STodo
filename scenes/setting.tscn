@@ -1,0 +1,170 @@
+[gd_scene load_steps=6 format=3 uid="uid://rx72jnaod31c"]
+
+[ext_resource type="Theme" uid="uid://dwfbb16l0pg5c" path="res://others/theme/Light/light_setting.tres" id="1_lybfn"]
+[ext_resource type="Texture2D" uid="uid://bpfyjmjl7kc6i" path="res://others/img/lightShowPicture.png" id="2_ic5rp"]
+[ext_resource type="Script" path="res://scripts/animationSettingOptionButton.gd" id="3_rmr1q"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k6yvg"]
+texture = ExtResource("2_ic5rp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s8ja6"]
+texture = ExtResource("2_ic5rp")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[node name="setting" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 912.0
+offset_bottom = 648.0
+
+[node name="theme" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 60.0
+offset_right = -20.0
+offset_bottom = 240.0
+grow_horizontal = 2
+theme = ExtResource("1_lybfn")
+
+[node name="Tip" type="Label" parent="theme"]
+layout_mode = 0
+offset_top = -40.0
+offset_right = 169.0
+offset_bottom = 1.0
+theme = ExtResource("1_lybfn")
+text = "Theme Setting"
+
+[node name="LightTheme" type="Control" parent="theme"]
+anchors_preset = 0
+
+[node name="Button" type="Button" parent="theme/LightTheme"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 20.0
+offset_right = 200.0
+offset_bottom = 140.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_k6yvg")
+theme_override_styles/hover = SubResource("StyleBoxTexture_s8ja6")
+
+[node name="Label" type="Label" parent="theme/LightTheme"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 145.0
+offset_right = 200.0
+offset_bottom = 178.0
+theme_override_colors/font_color = Color(0.0980392, 0.564706, 1, 1)
+text = "Light"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="localization" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 305.0
+offset_right = -20.0
+offset_bottom = 385.0
+grow_horizontal = 2
+theme = ExtResource("1_lybfn")
+
+[node name="Tip" type="Label" parent="localization"]
+layout_mode = 0
+offset_top = -40.0
+offset_right = 169.0
+offset_bottom = 1.0
+theme = ExtResource("1_lybfn")
+theme_override_font_sizes/font_size = 20
+text = "Localization"
+
+[node name="Label" type="Label" parent="localization"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 140.0
+offset_bottom = 60.0
+theme = ExtResource("1_lybfn")
+text = "Language"
+vertical_alignment = 1
+
+[node name="OptionButton" type="OptionButton" parent="localization"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 60.0
+grow_horizontal = 0
+theme = ExtResource("1_lybfn")
+alignment = 1
+item_count = 3
+selected = 0
+allow_reselect = true
+popup/item_0/text = "English"
+popup/item_0/id = 0
+popup/item_1/text = "简体中文(开发中)"
+popup/item_1/id = 1
+popup/item_1/disabled = true
+popup/item_2/text = "繁体中文(开发中)"
+popup/item_2/id = 2
+popup/item_2/disabled = true
+
+[node name="animation" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 20.0
+offset_top = 445.0
+offset_right = -20.0
+offset_bottom = 525.0
+grow_horizontal = 2
+theme = ExtResource("1_lybfn")
+
+[node name="Tip" type="Label" parent="animation"]
+layout_mode = 0
+offset_top = -40.0
+offset_right = 169.0
+offset_bottom = 1.0
+theme = ExtResource("1_lybfn")
+theme_override_font_sizes/font_size = 20
+text = "Animation"
+
+[node name="Label" type="Label" parent="animation"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 181.0
+offset_bottom = 60.0
+theme = ExtResource("1_lybfn")
+text = "Enable Animation"
+vertical_alignment = 1
+
+[node name="animationSettingOptionButton" type="OptionButton" parent="animation"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = 60.0
+grow_horizontal = 0
+theme = ExtResource("1_lybfn")
+alignment = 1
+item_count = 2
+selected = 0
+allow_reselect = true
+popup/item_0/text = "True"
+popup/item_0/id = 0
+popup/item_1/text = "False"
+popup/item_1/id = 1
+script = ExtResource("3_rmr1q")
+
+[connection signal="item_selected" from="animation/animationSettingOptionButton" to="animation/animationSettingOptionButton" method="_on_item_selected"]
