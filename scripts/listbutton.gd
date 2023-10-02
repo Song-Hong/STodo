@@ -14,7 +14,7 @@ func _ready():
 func on_mouse_entered():
 	if Global.nowItem != null and Global.nowList != text:
 		if Global.nowContentMenu != null : return
-		text = "Move to\n" + text
+		text = TranslationServer.translate("Move to")+"\n" + text
 		size = Vector2(136,72)
 		get_parent().move(self)
 		showTip = true
@@ -30,7 +30,7 @@ func on_mouse_entered():
 #当鼠标移出该按钮上时
 func on_mouse_exited():
 	if showTip:
-		text = text.trim_prefix("Move to\n")
+		text = text.trim_prefix(TranslationServer.translate("Move to")+"\n")
 		size = Vector2(136,36)
 		get_parent().remove(self)
 		showTip = false

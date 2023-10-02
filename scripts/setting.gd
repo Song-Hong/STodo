@@ -5,6 +5,8 @@ var settingPanel
 
 #当按钮点击时,跳转到显示节点
 func _on_button_down():
+	if Global.nowList == "setting":return
+	else: $"../../../todoItemArea".Save()
 	Global.nowList = "setting"
 	#当被点击时,清空页面
 	if Global.animationState:
@@ -28,6 +30,7 @@ func showSetting():
 	var windowSize = get_window().size
 	$"../../..".add_child(settingPanel)
 	$"../../../windowDrag".move_to_front()
+	$"../../../appController".move_to_front()
 	settingPanel.position = Vector2(160,0)
 	settingPanel.size = Vector2(windowSize.x-160,windowSize.y-200)
 

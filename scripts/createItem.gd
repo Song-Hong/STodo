@@ -7,3 +7,5 @@ func _on_button_down():
 	$"../../../todoItemArea".add_child(scene)
 	scene.position = get_global_mouse_position()
 	get_parent().visible = false
+	scene.IName.text = TranslationServer.translate("New Todo")
+	scene.INameText  = scene.IName.text

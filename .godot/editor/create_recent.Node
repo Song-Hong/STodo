@@ -1,11 +1,11 @@
-OptionButton
+Button
 Control
+OptionButton
 Label
 MenuBar
 MenuButton
 Panel
 Node
-Button
 ColorRect
 LineEdit
 TextEdit

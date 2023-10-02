@@ -27,8 +27,13 @@ Global="*res://scripts/global.gd"
 [display]
 
 window/size/initial_position_type=0
-window/size/extend_to_title=true
+window/size/borderless=true
 window/subwindows/embed_subwindows=false
+
+[internationalization]
+
+locale/translation_remaps={}
+locale/translations=PackedStringArray("res://others/localization/localization.en.translation", "res://others/localization/localization.zh_Hans_CN.translation", "res://others/localization/localization.zh_HK.translation")
 
 [rendering]
 

@@ -13,7 +13,7 @@ var INameText = ""      #当前Item的名称
 @export var Tags:Button         #标签
 @export var deadlineDate:Button #截止日期
 
-func _ready():
+func _ready():	
 	#设置时间
 	var time   = Time.get_datetime_dict_from_system()
 	Start = [time.year,time.month,time.day,

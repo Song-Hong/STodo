@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cqf30i7kv1cqw"]
+[gd_scene load_steps=35 format=3 uid="uid://cqf30i7kv1cqw"]
 
 [ext_resource type="Script" path="res://scripts/window_drag.gd" id="1_ikoyu"]
 [ext_resource type="Script" path="res://scripts/global.gd" id="1_mqoxn"]
@@ -15,6 +15,49 @@
 [ext_resource type="Theme" uid="uid://cbvr5vood78yd" path="res://others/theme/Light/light_contentMenu.tres" id="9_uiqgu"]
 [ext_resource type="Script" path="res://scripts/complete.gd" id="9_xhnu5"]
 [ext_resource type="Script" path="res://scripts/createItem.gd" id="11_dhqib"]
+[ext_resource type="Texture2D" uid="uid://ddlo17wowlyle" path="res://others/Icons/close.png" id="16_phy16"]
+[ext_resource type="Texture2D" uid="uid://b5h4xv4c3010s" path="res://others/Icons/close nomal.png" id="16_qd1bo"]
+[ext_resource type="Script" path="res://scripts/appController.gd" id="16_tnxsh"]
+[ext_resource type="Texture2D" uid="uid://bf6xcferbtpdx" path="res://others/Icons/min nomal.png" id="19_s1co7"]
+[ext_resource type="Texture2D" uid="uid://b520httfm6dvc" path="res://others/Icons/min.png" id="20_pq4vp"]
+[ext_resource type="Texture2D" uid="uid://dtj35xohop4d1" path="res://others/Icons/max nomal.png" id="21_nw66v"]
+[ext_resource type="Texture2D" uid="uid://dy1xxeb7fv8jp" path="res://others/Icons/max.png" id="22_33i8k"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4bytf"]
+texture = ExtResource("16_qd1bo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tjdha"]
+texture = ExtResource("16_phy16")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nxa2m"]
+texture = ExtResource("16_qd1bo")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6a03t"]
+load_path = "res://.godot/imported/disabled.png-a956c0875727ee7b15a78e90cad7effa.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gs66i"]
+texture = SubResource("CompressedTexture2D_6a03t")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xqqc2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gkudx"]
+texture = ExtResource("19_s1co7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6bder"]
+texture = ExtResource("20_pq4vp")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ojgs1"]
+texture = ExtResource("19_s1co7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bj1ff"]
+texture = ExtResource("21_nw66v")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lydgx"]
+texture = ExtResource("22_33i8k")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nb8n8"]
+texture = ExtResource("21_nw66v")
 
 [node name="mainWindow" type="Control"]
 layout_mode = 3
@@ -154,8 +197,7 @@ offset_top = 5.0
 offset_right = 155.0
 offset_bottom = 36.0
 theme = ExtResource("9_uiqgu")
-text = "Create Item
-"
+text = "Create Item"
 script = ExtResource("11_dhqib")
 
 [node name="todoItemCM" type="Panel" parent="contentMenuManager"]
@@ -198,6 +240,48 @@ grow_horizontal = 2
 focus_mode = 0
 theme = ExtResource("2_bm743")
 script = ExtResource("1_ikoyu")
+
+[node name="appController" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="Quit" type="Button" parent="appController"]
+layout_mode = 1
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 20.0
+offset_bottom = 20.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_4bytf")
+theme_override_styles/hover = SubResource("StyleBoxTexture_tjdha")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nxa2m")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_gs66i")
+theme_override_styles/focus = SubResource("StyleBoxFlat_xqqc2")
+script = ExtResource("16_tnxsh")
+
+[node name="Min" type="Button" parent="appController"]
+layout_mode = 1
+offset_left = 28.0
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 20.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_gkudx")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6bder")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ojgs1")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_gs66i")
+script = ExtResource("16_tnxsh")
+btn_type = 1
+
+[node name="Max" type="Button" parent="appController"]
+layout_mode = 1
+offset_left = 48.0
+offset_top = 8.0
+offset_right = 60.0
+offset_bottom = 20.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_bj1ff")
+theme_override_styles/hover = SubResource("StyleBoxTexture_lydgx")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_nb8n8")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_gs66i")
+script = ExtResource("16_tnxsh")
+btn_type = 2
 
 [connection signal="button_down" from="leftMenu/Node/setting" to="leftMenu/Node/setting" method="_on_button_down"]
 [connection signal="gui_input" from="todoItemArea" to="todoItemArea" method="_on_gui_input"]

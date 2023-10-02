@@ -41,6 +41,7 @@ func loadConf():
 	var window_size       = json["window_size"]
 	var window_po         = json["window_po"]
 	Global.animationState = json["animationState"]
+	TranslationServer.set_locale(json["language"])
 	get_window().size     = Vector2(window_size[0],window_size[1])
 	get_window().position = Vector2(window_po[0],window_po[1])
 	$todoItemArea.showDayTodo(default_list)
@@ -59,6 +60,7 @@ func saveState():
 		"is_frist":false,
 		"default_list":default_list,
 		"animationState":Global.animationState,
+		"language":TranslationServer.get_locale(),
 		"window_size":[wSize.x,wSize.y],
 		"window_po":[po.x,po.y]}
 	var data = JSON.stringify(json)
