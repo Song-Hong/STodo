@@ -1,3 +1,4 @@
+Node
 Button
 Control
 OptionButton
@@ -5,7 +6,6 @@ Label
 MenuBar
 MenuButton
 Panel
-Node
 ColorRect
 LineEdit
 TextEdit

@@ -27,7 +27,7 @@ func frist():
 	var wPo = sSize/2 -wSize/2
 	DisplayServer.window_set_size(wSize)
 	get_window().position = wPo
-	DirAccess.make_dir_absolute(dir+"list")
+	DirAccess.make_dir_absolute(dir+"list/")
 	DirAccess.make_dir_absolute(dir+"conf/")
 	saveState()
 	Global.nowList = "Today"
