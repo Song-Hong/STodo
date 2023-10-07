@@ -27,17 +27,28 @@ func showDayTodo(list:String,moveDirection=1):
 	for item in get_children():
 		remove_child(item)
 	now_list = list
-	#格式化路径
-	var path = save_path%list
-	#判断文件是否存在,如果不存在则创建
-	if not FileAccess.file_exists(path):
-		var f = FileAccess.open(path,FileAccess.WRITE)
-		f.store_string("{}")
-		f.close()
-	var file = FileAccess.open(path,FileAccess.READ)
-	var json = JSON.parse_string(file.get_as_text())
+	
+	#
+	var json
+	match list:
+		"expired"  : return
+		"today"    : json = $"../database".today_cache
+		"tomorrow" : json = $"../database".tomorrow_cache
+		"week"     : json = $"../database".week_cache
 	for key in json.keys():
 		create(key,json[key])
+	
+	#格式化路径
+	#var path = save_path%list
+	#判断文件是否存在,如果不存在则创建
+	#if not FileAccess.file_exists(path):
+		#var f = FileAccess.open(path,FileAccess.WRITE)
+		#f.store_string("{}")
+		#f.close()
+	#var file = FileAccess.open(path,FileAccess.READ)
+	#var json = JSON.parse_string(file.get_as_text())
+	#for key in json.keys():
+		#create(key,json[key])
 
 #显示Todo页面 动画版
 func showDayTodoUX(list:String,moveDirection=1):

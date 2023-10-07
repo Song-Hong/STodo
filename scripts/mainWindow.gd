@@ -6,8 +6,6 @@ var dir = "user://"
 
 #初始化
 func _ready():
-	#设置背景透明
-	get_tree().root.set_transparent_background(true)
 	if FileAccess.file_exists(dir+"conf/core.json"):
 		loadConf()
 	else:

@@ -7,6 +7,7 @@ var offset              #偏移值
 var ID        = "STodo" #唯一值
 var Start     = []      #开始时间
 var INameText = ""      #当前Item的名称
+var isComplete:bool     #当前任务是否完成
 
 #外部引用
 @export var IName:LineEdit      #名称
@@ -85,6 +86,11 @@ func SetDeadlineDate(end):
 	if end != null:
 		deadlineDate.text = end
 
+#获取截止时间
+func GetDeadlineDateStr():
+	var date = deadlineDate.get_end_date()
+	return str(date[0])+str(date[1])+str(date[2])
+
 #转为Json数据
 func ToJson():
 	var json_obj  = {str(ID):{
@@ -95,6 +101,10 @@ func ToJson():
 					 "end":deadlineDate.get_end_date()}}
 	var json_data = JSON.stringify(json_obj)
 	return json_data
+	
+#获取全部数据
+func get_all_data():
+	pass
 	
 #设置为小尺寸
 func MinSize():

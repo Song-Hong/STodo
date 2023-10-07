@@ -1,12 +1,12 @@
 [gd_scene load_steps=36 format=3 uid="uid://cqf30i7kv1cqw"]
 
-[ext_resource type="Script" path="res://scripts/window_drag.gd" id="1_ikoyu"]
-[ext_resource type="Script" path="res://scripts/global.gd" id="1_mqoxn"]
+[ext_resource type="Script" path="res://scripts/window/window_drag.gd" id="1_ikoyu"]
 [ext_resource type="Script" path="res://scripts/todoItemArea.gd" id="1_s4car"]
 [ext_resource type="Script" path="res://scripts/mainWindow.gd" id="1_s7u8p"]
 [ext_resource type="Script" path="res://scripts/listGroup.gd" id="1_tru7w"]
 [ext_resource type="Theme" uid="uid://4n68pb8tm75j" path="res://others/theme/Light/light_globa.tres" id="2_bm743"]
-[ext_resource type="Script" path="res://scripts/database.gd" id="3_o0o52"]
+[ext_resource type="Script" path="res://scripts/singleton/databaseManager.gd" id="3_4iklr"]
+[ext_resource type="Script" path="res://scripts/singleton/global.gd" id="4_2dsbi"]
 [ext_resource type="StyleBox" uid="uid://5bio58gaq10k" path="res://others/theme/Light/light_leftMenu.tres" id="4_77axd"]
 [ext_resource type="Script" path="res://scripts/listbutton.gd" id="4_epodi"]
 [ext_resource type="ButtonGroup" uid="uid://bgw5cquep7q1w" path="res://others/buttonGroup/listGroup.tres" id="5_ohqn4"]
@@ -71,7 +71,9 @@ theme = ExtResource("2_bm743")
 script = ExtResource("1_s7u8p")
 
 [node name="database" type="Node" parent="."]
-script = ExtResource("3_o0o52")
+script = ExtResource("3_4iklr")
+
+[node name="core" type="Node" parent="."]
 
 [node name="background" type="Panel" parent="."]
 clip_contents = true
@@ -84,7 +86,7 @@ grow_vertical = 2
 theme = ExtResource("2_bm743")
 
 [node name="global" type="Node" parent="."]
-script = ExtResource("1_mqoxn")
+script = ExtResource("4_2dsbi")
 
 [node name="leftMenu" type="Panel" parent="."]
 layout_mode = 1
