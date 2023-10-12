@@ -8,6 +8,10 @@ var isdown = false
 #记录初始鼠标位置
 var mouseDownPo
 
+func _ready():
+	connect("button_up",Callable(self,"_on_button_up"))
+	connect("button_down",Callable(self,"_on_button_down"))
+
 #当鼠标按下时候,开始窗口跟手
 func _on_button_down():
 	isdown = true

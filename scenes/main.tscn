@@ -1,66 +1,48 @@
-[gd_scene load_steps=36 format=3 uid="uid://cqf30i7kv1cqw"]
+[gd_scene load_steps=23 format=3 uid="uid://bslg8ghj3valg"]
 
-[ext_resource type="Script" path="res://scripts/window/window_drag.gd" id="1_ikoyu"]
-[ext_resource type="Script" path="res://scripts/todoItemArea.gd" id="1_s4car"]
-[ext_resource type="Script" path="res://scripts/mainWindow.gd" id="1_s7u8p"]
-[ext_resource type="Script" path="res://scripts/listGroup.gd" id="1_tru7w"]
 [ext_resource type="Theme" uid="uid://4n68pb8tm75j" path="res://others/theme/Light/light_globa.tres" id="2_bm743"]
-[ext_resource type="Script" path="res://scripts/singleton/databaseManager.gd" id="3_4iklr"]
-[ext_resource type="Script" path="res://scripts/singleton/global.gd" id="4_2dsbi"]
-[ext_resource type="StyleBox" uid="uid://5bio58gaq10k" path="res://others/theme/Light/light_leftMenu.tres" id="4_77axd"]
-[ext_resource type="Script" path="res://scripts/listbutton.gd" id="4_epodi"]
-[ext_resource type="ButtonGroup" uid="uid://bgw5cquep7q1w" path="res://others/buttonGroup/listGroup.tres" id="5_ohqn4"]
-[ext_resource type="Script" path="res://scripts/deleteTodo.gd" id="7_13my2"]
-[ext_resource type="Script" path="res://scripts/contentMenuManager.gd" id="7_kws2r"]
-[ext_resource type="Script" path="res://scripts/setting.gd" id="8_3y82h"]
-[ext_resource type="Theme" uid="uid://cbvr5vood78yd" path="res://others/theme/Light/light_contentMenu.tres" id="9_uiqgu"]
-[ext_resource type="Script" path="res://scripts/complete.gd" id="9_xhnu5"]
-[ext_resource type="Script" path="res://scripts/createItem.gd" id="11_dhqib"]
+[ext_resource type="StyleBox" uid="uid://5bio58gaq10k" path="res://others/theme/Light/light_leftMenu.tres" id="2_rxhw4"]
+[ext_resource type="Script" path="res://scripts/leftMenu/leftMenu.gd" id="3_7p4oc"]
+[ext_resource type="Script" path="res://scripts/window/appController.gd" id="3_qwv7e"]
+[ext_resource type="ButtonGroup" uid="uid://bgw5cquep7q1w" path="res://others/buttonGroup/listGroup.tres" id="3_ut62r"]
+[ext_resource type="Script" path="res://scripts/window/window_drag.gd" id="3_vkrt5"]
+[ext_resource type="Script" path="res://scripts/leftMenu/listbutton.gd" id="5_nka02"]
+[ext_resource type="Texture2D" uid="uid://bf6xcferbtpdx" path="res://others/Icons/min nomal.png" id="7_bradq"]
+[ext_resource type="Texture2D" uid="uid://b520httfm6dvc" path="res://others/Icons/min.png" id="8_3gpoh"]
+[ext_resource type="Texture2D" uid="uid://dtj35xohop4d1" path="res://others/Icons/max nomal.png" id="9_0abu6"]
+[ext_resource type="Texture2D" uid="uid://dy1xxeb7fv8jp" path="res://others/Icons/max.png" id="10_m0uv3"]
 [ext_resource type="Texture2D" uid="uid://ddlo17wowlyle" path="res://others/Icons/close.png" id="16_phy16"]
 [ext_resource type="Texture2D" uid="uid://b5h4xv4c3010s" path="res://others/Icons/close nomal.png" id="16_qd1bo"]
-[ext_resource type="Script" path="res://scripts/appController.gd" id="16_tnxsh"]
-[ext_resource type="Texture2D" uid="uid://bf6xcferbtpdx" path="res://others/Icons/min nomal.png" id="19_s1co7"]
-[ext_resource type="Texture2D" uid="uid://b520httfm6dvc" path="res://others/Icons/min.png" id="20_pq4vp"]
-[ext_resource type="Texture2D" uid="uid://dtj35xohop4d1" path="res://others/Icons/max nomal.png" id="21_nw66v"]
-[ext_resource type="Texture2D" uid="uid://dy1xxeb7fv8jp" path="res://others/Icons/max.png" id="22_33i8k"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4bytf"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_cjptp"]
 texture = ExtResource("16_qd1bo")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tjdha"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dc85w"]
 texture = ExtResource("16_phy16")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nxa2m"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a8swn"]
 texture = ExtResource("16_qd1bo")
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6a03t"]
-load_path = "res://.godot/imported/disabled.png-a956c0875727ee7b15a78e90cad7effa.ctex"
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tgyfy"]
+texture = ExtResource("7_bradq")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gs66i"]
-texture = SubResource("CompressedTexture2D_6a03t")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4depu"]
+texture = ExtResource("8_3gpoh")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xqqc2"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wna6e"]
+texture = ExtResource("7_bradq")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gkudx"]
-texture = ExtResource("19_s1co7")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b5dd6"]
+texture = ExtResource("9_0abu6")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6bder"]
-texture = ExtResource("20_pq4vp")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vy1wu"]
+texture = ExtResource("10_m0uv3")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ojgs1"]
-texture = ExtResource("19_s1co7")
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_c7wrm"]
+texture = ExtResource("9_0abu6")
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bj1ff"]
-texture = ExtResource("21_nw66v")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lydgx"]
-texture = ExtResource("22_33i8k")
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nb8n8"]
-texture = ExtResource("21_nw66v")
-
-[node name="mainWindow" type="Control"]
+[node name="main" type="Control"]
+show_behind_parent = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -68,12 +50,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_bm743")
-script = ExtResource("1_s7u8p")
-
-[node name="database" type="Node" parent="."]
-script = ExtResource("3_4iklr")
-
-[node name="core" type="Node" parent="."]
 
 [node name="background" type="Panel" parent="."]
 clip_contents = true
@@ -85,8 +61,13 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_bm743")
 
-[node name="global" type="Node" parent="."]
-script = ExtResource("4_2dsbi")
+[node name="todoItemArea" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="leftMenu" type="Panel" parent="."]
 layout_mode = 1
@@ -94,220 +75,131 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 160.0
 grow_vertical = 2
-theme = ExtResource("2_bm743")
-theme_override_styles/panel = ExtResource("4_77axd")
+theme_override_styles/panel = ExtResource("2_rxhw4")
+script = ExtResource("3_7p4oc")
+group = ExtResource("3_ut62r")
 
-[node name="title" type="Label" parent="leftMenu"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_top = 50.0
-offset_right = 14.0
+[node name="Label" type="Label" parent="leftMenu"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 30.0
+offset_right = 145.0
 offset_bottom = 90.0
-grow_horizontal = 2
-theme = ExtResource("2_bm743")
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 36
 text = "STodo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Node" type="Node" parent="leftMenu"]
-script = ExtResource("1_tru7w")
-group = ExtResource("5_ohqn4")
-
-[node name="expired" type="Button" parent="leftMenu/Node"]
-offset_left = 12.0
-offset_top = 124.0
-offset_right = 148.0
-offset_bottom = 160.0
-pivot_offset = Vector2(68, 18)
+[node name="Expired" type="Button" parent="leftMenu"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 120.0
+offset_right = 145.0
+offset_bottom = 150.0
 focus_mode = 0
 theme = ExtResource("2_bm743")
 toggle_mode = true
-button_group = ExtResource("5_ohqn4")
+button_group = ExtResource("3_ut62r")
 text = "Expired"
-script = ExtResource("4_epodi")
+script = ExtResource("5_nka02")
 
-[node name="today" type="Button" parent="leftMenu/Node"]
-offset_left = 12.0
-offset_top = 174.0
-offset_right = 148.0
-offset_bottom = 210.0
-pivot_offset = Vector2(68, 18)
+[node name="Today" type="Button" parent="leftMenu"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 170.0
+offset_right = 145.0
+offset_bottom = 200.0
 focus_mode = 0
 theme = ExtResource("2_bm743")
 toggle_mode = true
-button_group = ExtResource("5_ohqn4")
+button_group = ExtResource("3_ut62r")
 text = "Today"
-script = ExtResource("4_epodi")
+script = ExtResource("5_nka02")
 
-[node name="tomorrow" type="Button" parent="leftMenu/Node"]
-offset_left = 12.0
-offset_top = 224.0
-offset_right = 148.0
-offset_bottom = 260.0
-pivot_offset = Vector2(68, 18)
+[node name="Tomorrow" type="Button" parent="leftMenu"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 220.0
+offset_right = 145.0
+offset_bottom = 250.0
 focus_mode = 0
 theme = ExtResource("2_bm743")
 toggle_mode = true
-button_group = ExtResource("5_ohqn4")
+button_group = ExtResource("3_ut62r")
 text = "Tomorrow"
-script = ExtResource("4_epodi")
+script = ExtResource("5_nka02")
 
-[node name="week" type="Button" parent="leftMenu/Node"]
-offset_left = 12.0
-offset_top = 274.0
-offset_right = 148.0
-offset_bottom = 310.0
-pivot_offset = Vector2(68, 18)
+[node name="Week" type="Button" parent="leftMenu"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 270.0
+offset_right = 145.0
+offset_bottom = 300.0
 focus_mode = 0
 theme = ExtResource("2_bm743")
 toggle_mode = true
-button_group = ExtResource("5_ohqn4")
+button_group = ExtResource("3_ut62r")
 text = "Week"
-script = ExtResource("4_epodi")
+script = ExtResource("5_nka02")
 
-[node name="setting" type="Button" parent="leftMenu/Node"]
-anchors_preset = 2
+[node name="Setting" type="Button" parent="leftMenu"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
 anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 12.0
-offset_top = -48.0
-offset_right = 148.0
-offset_bottom = -12.0
+offset_left = -65.0
+offset_top = -50.0
+offset_right = 65.0
+offset_bottom = -20.0
+grow_horizontal = 2
 grow_vertical = 0
-pivot_offset = Vector2(68, 18)
 focus_mode = 0
 theme = ExtResource("2_bm743")
 toggle_mode = true
-button_group = ExtResource("5_ohqn4")
+button_group = ExtResource("3_ut62r")
 text = "Setting"
-script = ExtResource("8_3y82h")
 
-[node name="todoItemArea" type="Control" parent="."]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_bm743")
-script = ExtResource("1_s4car")
-
-[node name="contentMenuManager" type="Control" parent="."]
-anchors_preset = 0
-theme = ExtResource("9_uiqgu")
-script = ExtResource("7_kws2r")
-
-[node name="todoItemAreaCM" type="Panel" parent="contentMenuManager"]
-visible = false
-layout_mode = 0
-offset_left = 432.0
-offset_top = 133.0
-offset_right = 592.0
-offset_bottom = 393.0
-theme = ExtResource("9_uiqgu")
-
-[node name="createItem" type="Button" parent="contentMenuManager/todoItemAreaCM"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 155.0
-offset_bottom = 36.0
-theme = ExtResource("9_uiqgu")
-text = "Create Item"
-script = ExtResource("11_dhqib")
-
-[node name="todoItemCM" type="Panel" parent="contentMenuManager"]
-visible = false
-layout_mode = 0
-offset_left = 334.0
-offset_top = 71.0
-offset_right = 474.0
-offset_bottom = 291.0
-theme = ExtResource("9_uiqgu")
-
-[node name="complete" type="Button" parent="contentMenuManager/todoItemCM"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 135.0
-offset_bottom = 36.0
-theme = ExtResource("9_uiqgu")
-text = "Complete"
-script = ExtResource("9_xhnu5")
-
-[node name="deleteTodo" type="Button" parent="contentMenuManager/todoItemCM"]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 41.0
-offset_right = 135.0
-offset_bottom = 72.0
-theme = ExtResource("9_uiqgu")
-text = "Delete Todo"
-script = ExtResource("7_13my2")
-
-[node name="windowDrag" type="Button" parent="."]
-modulate = Color(1, 1, 1, 0)
-self_modulate = Color(1, 1, 1, 0)
+[node name="windowState" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 26.0
+offset_bottom = 30.0
 grow_horizontal = 2
 focus_mode = 0
-theme = ExtResource("2_bm743")
-script = ExtResource("1_ikoyu")
+flat = true
+script = ExtResource("3_vkrt5")
 
-[node name="appController" type="Control" parent="."]
-anchors_preset = 0
+[node name="quit" type="Button" parent="windowState"]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 19.0
+offset_bottom = 19.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_cjptp")
+theme_override_styles/hover = SubResource("StyleBoxTexture_dc85w")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_a8swn")
+script = ExtResource("3_qwv7e")
 
-[node name="Quit" type="Button" parent="appController"]
-layout_mode = 1
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 20.0
-offset_bottom = 20.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_4bytf")
-theme_override_styles/hover = SubResource("StyleBoxTexture_tjdha")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_nxa2m")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_gs66i")
-theme_override_styles/focus = SubResource("StyleBoxFlat_xqqc2")
-script = ExtResource("16_tnxsh")
+[node name="min" type="Button" parent="windowState"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 6.0
+offset_right = 39.0
+offset_bottom = 19.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_tgyfy")
+theme_override_styles/hover = SubResource("StyleBoxTexture_4depu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_wna6e")
+script = ExtResource("3_qwv7e")
 
-[node name="Min" type="Button" parent="appController"]
-layout_mode = 1
-offset_left = 28.0
-offset_top = 8.0
-offset_right = 40.0
-offset_bottom = 20.0
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxTexture_gkudx")
-theme_override_styles/hover = SubResource("StyleBoxTexture_6bder")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_ojgs1")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_gs66i")
-script = ExtResource("16_tnxsh")
-btn_type = 1
-
-[node name="Max" type="Button" parent="appController"]
-layout_mode = 1
-offset_left = 48.0
-offset_top = 8.0
-offset_right = 60.0
-offset_bottom = 20.0
-focus_mode = 0
-theme_override_styles/normal = SubResource("StyleBoxTexture_bj1ff")
-theme_override_styles/hover = SubResource("StyleBoxTexture_lydgx")
-theme_override_styles/pressed = SubResource("StyleBoxTexture_nb8n8")
-theme_override_styles/disabled = SubResource("StyleBoxTexture_gs66i")
-script = ExtResource("16_tnxsh")
-btn_type = 2
-
-[connection signal="button_down" from="leftMenu/Node/setting" to="leftMenu/Node/setting" method="_on_button_down"]
-[connection signal="gui_input" from="todoItemArea" to="todoItemArea" method="_on_gui_input"]
-[connection signal="button_down" from="contentMenuManager/todoItemAreaCM/createItem" to="contentMenuManager/todoItemAreaCM/createItem" method="_on_button_down"]
-[connection signal="button_down" from="contentMenuManager/todoItemCM/complete" to="contentMenuManager/todoItemCM/complete" method="_on_button_down"]
-[connection signal="button_down" from="contentMenuManager/todoItemCM/deleteTodo" to="contentMenuManager/todoItemCM/deleteTodo" method="_on_button_down"]
-[connection signal="button_down" from="windowDrag" to="windowDrag" method="_on_button_down"]
-[connection signal="button_up" from="windowDrag" to="windowDrag" method="_on_button_up"]
+[node name="max" type="Button" parent="windowState"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 6.0
+offset_right = 59.0
+offset_bottom = 19.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_b5dd6")
+theme_override_styles/hover = SubResource("StyleBoxTexture_vy1wu")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_c7wrm")
+script = ExtResource("3_qwv7e")

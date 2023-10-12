@@ -48,7 +48,7 @@ func _on_button_up():
 	if position.x < 160 : 
 		position = Vector2(165,position.y)
 		NomalSize()
-	if Global.nowShowTipList != null and Global.nowShowTipList.text != Global.nowList:
+	if Global.nowShowTipList != null and Global.nowShowTipList.text != Global.nowListName:
 		var list = Global.nowShowTipList.text.trim_prefix("Move to\n")
 		position = Vector2(183,22)
 		Global.todoItemArea.MoveTo(list,ToJson())

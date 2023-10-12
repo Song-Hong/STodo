@@ -6,10 +6,10 @@ extends Node
 var database:databaseManager 
 #场景单例
 var scenes:scenesMananger
-#预制件单例
-var items:itemsManager
 #文件单例
 var io:ioManager
+#时间单例
+var time:timeManager
 
 #菜单管理器
 var contentMenuManager:Control
@@ -18,8 +18,10 @@ var todoItemArea:Control
 
 #当前显示提示的列表
 var nowShowTipList:Button
+#当前显示节点的名称
+var nowListName:String
 #当前显示的列表
-var nowList
+var nowList:Button
 #当前选中的节点
 var nowItem:Button
 #当前显示的右键菜单

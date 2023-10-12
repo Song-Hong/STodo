@@ -12,7 +12,7 @@ func _ready():
 
 #当鼠标移动到该按钮上时
 func on_mouse_entered():
-	if Global.nowItem != null and Global.nowList != text:
+	if Global.nowItem != null and Global.nowListName != text:
 		if Global.nowContentMenu != null : return
 		text = TranslationServer.translate("Move to")+"\n" + text
 		size = Vector2(136,72)
