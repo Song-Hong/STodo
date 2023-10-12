@@ -14,3 +14,4 @@ res://scripts/leftMenu/leftMenu.gd
 res://scripts/singleton/global.gd
 res://scripts/listbutton.gd
 res://scripts/item.gd
+res://README.md
