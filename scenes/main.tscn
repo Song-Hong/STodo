@@ -1,5 +1,6 @@
-[gd_scene load_steps=23 format=3 uid="uid://bslg8ghj3valg"]
+[gd_scene load_steps=26 format=3 uid="uid://bslg8ghj3valg"]
 
+[ext_resource type="Script" path="res://scripts/todoItemArea/todoItemArea.gd" id="2_0nue1"]
 [ext_resource type="Theme" uid="uid://4n68pb8tm75j" path="res://others/theme/Light/light_globa.tres" id="2_bm743"]
 [ext_resource type="StyleBox" uid="uid://5bio58gaq10k" path="res://others/theme/Light/light_leftMenu.tres" id="2_rxhw4"]
 [ext_resource type="Script" path="res://scripts/leftMenu/leftMenu.gd" id="3_7p4oc"]
@@ -7,8 +8,10 @@
 [ext_resource type="ButtonGroup" uid="uid://bgw5cquep7q1w" path="res://others/buttonGroup/listGroup.tres" id="3_ut62r"]
 [ext_resource type="Script" path="res://scripts/window/window_drag.gd" id="3_vkrt5"]
 [ext_resource type="Script" path="res://scripts/leftMenu/listbutton.gd" id="5_nka02"]
+[ext_resource type="Script" path="res://scripts/contentMenu/contentMenuManager.gd" id="6_x56fd"]
 [ext_resource type="Texture2D" uid="uid://bf6xcferbtpdx" path="res://others/Icons/min nomal.png" id="7_bradq"]
 [ext_resource type="Texture2D" uid="uid://b520httfm6dvc" path="res://others/Icons/min.png" id="8_3gpoh"]
+[ext_resource type="Script" path="res://scripts/setting/setting.gd" id="8_khf3f"]
 [ext_resource type="Texture2D" uid="uid://dtj35xohop4d1" path="res://others/Icons/max nomal.png" id="9_0abu6"]
 [ext_resource type="Texture2D" uid="uid://dy1xxeb7fv8jp" path="res://others/Icons/max.png" id="10_m0uv3"]
 [ext_resource type="Texture2D" uid="uid://ddlo17wowlyle" path="res://others/Icons/close.png" id="16_phy16"]
@@ -61,6 +64,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_bm743")
 
+[node name="temporarily" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="todoItemArea" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
@@ -68,6 +79,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_0nue1")
+
+[node name="contentMenuManager" type="Control" parent="."]
+anchors_preset = 0
+script = ExtResource("6_x56fd")
 
 [node name="leftMenu" type="Panel" parent="."]
 layout_mode = 1
@@ -79,7 +95,7 @@ theme_override_styles/panel = ExtResource("2_rxhw4")
 script = ExtResource("3_7p4oc")
 group = ExtResource("3_ut62r")
 
-[node name="Label" type="Label" parent="leftMenu"]
+[node name="appName" type="Label" parent="leftMenu"]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 30.0
@@ -90,12 +106,13 @@ text = "STodo"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Expired" type="Button" parent="leftMenu"]
+[node name="expired" type="Button" parent="leftMenu"]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 120.0
 offset_right = 145.0
 offset_bottom = 150.0
+pivot_offset = Vector2(65, 15)
 focus_mode = 0
 theme = ExtResource("2_bm743")
 toggle_mode = true
@@ -103,12 +120,13 @@ button_group = ExtResource("3_ut62r")
 text = "Expired"
 script = ExtResource("5_nka02")
 
-[node name="Today" type="Button" parent="leftMenu"]
+[node name="today" type="Button" parent="leftMenu"]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 170.0
 offset_right = 145.0
 offset_bottom = 200.0
+pivot_offset = Vector2(65, 15)
 focus_mode = 0
 theme = ExtResource("2_bm743")
 toggle_mode = true
@@ -116,12 +134,13 @@ button_group = ExtResource("3_ut62r")
 text = "Today"
 script = ExtResource("5_nka02")
 
-[node name="Tomorrow" type="Button" parent="leftMenu"]
+[node name="tomorrow" type="Button" parent="leftMenu"]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 220.0
 offset_right = 145.0
 offset_bottom = 250.0
+pivot_offset = Vector2(65, 15)
 focus_mode = 0
 theme = ExtResource("2_bm743")
 toggle_mode = true
@@ -129,12 +148,13 @@ button_group = ExtResource("3_ut62r")
 text = "Tomorrow"
 script = ExtResource("5_nka02")
 
-[node name="Week" type="Button" parent="leftMenu"]
+[node name="week" type="Button" parent="leftMenu"]
 layout_mode = 0
 offset_left = 15.0
 offset_top = 270.0
 offset_right = 145.0
 offset_bottom = 300.0
+pivot_offset = Vector2(65, 15)
 focus_mode = 0
 theme = ExtResource("2_bm743")
 toggle_mode = true
@@ -142,7 +162,7 @@ button_group = ExtResource("3_ut62r")
 text = "Week"
 script = ExtResource("5_nka02")
 
-[node name="Setting" type="Button" parent="leftMenu"]
+[node name="setting" type="Button" parent="leftMenu"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -155,11 +175,13 @@ offset_right = 65.0
 offset_bottom = -20.0
 grow_horizontal = 2
 grow_vertical = 0
+pivot_offset = Vector2(65, 15)
 focus_mode = 0
 theme = ExtResource("2_bm743")
 toggle_mode = true
 button_group = ExtResource("3_ut62r")
 text = "Setting"
+script = ExtResource("8_khf3f")
 
 [node name="windowState" type="Button" parent="."]
 layout_mode = 1

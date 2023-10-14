@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://ch5yg3itjjy75"]
+
+[ext_resource type="Theme" uid="uid://cbvr5vood78yd" path="res://others/theme/Light/light_contentMenu.tres" id="1_00bap"]
+[ext_resource type="Script" path="res://scripts/contentMenu/todoItemArea/complete.gd" id="2_or7ga"]
+[ext_resource type="Script" path="res://scripts/contentMenu/todoItemArea/createItem.gd" id="3_ygr3v"]
+[ext_resource type="Script" path="res://scripts/contentMenu/todoItemArea/deleteTodo.gd" id="4_ikn6y"]
+
+[node name="todoItemAreaCM" type="Panel"]
+offset_right = 100.0
+offset_bottom = 160.0
+theme = ExtResource("1_00bap")
+
+[node name="complete" type="Button" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 90.0
+offset_bottom = 28.0
+theme = ExtResource("1_00bap")
+text = "Complete"
+script = ExtResource("2_or7ga")
+
+[node name="createItem" type="Button" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 36.0
+offset_right = 90.0
+offset_bottom = 54.0
+theme = ExtResource("1_00bap")
+text = "Create Item
+"
+script = ExtResource("3_ygr3v")
+
+[node name="deleteTodo" type="Button" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 62.0
+offset_right = 90.0
+offset_bottom = 80.0
+theme = ExtResource("1_00bap")
+text = "Delete Todo"
+script = ExtResource("4_ikn6y")
+
+[connection signal="button_down" from="complete" to="complete" method="_on_button_down"]
+[connection signal="button_down" from="createItem" to="createItem" method="_on_button_down"]
+[connection signal="button_down" from="deleteTodo" to="deleteTodo" method="_on_button_down"]

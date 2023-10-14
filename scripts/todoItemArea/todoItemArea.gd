@@ -9,12 +9,13 @@ var save_path = "user://list/%s.json"
 #初始化
 func _ready():
 	Global.todoItemArea = self
+	connect("gui_input",Callable(self,"_on_gui_input"))
 
 #右键点击申请右键菜单
 func _on_gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_RIGHT:
-			Global.contentMenuManager.showContetnMenu("todoItemArea")
+			Global.contentMenuManager.showContetnMenu("todoItemAreaCM")
 
 #显示Todo页面
 func showDayTodo(list:String,moveDirection=1):
@@ -100,7 +101,7 @@ func create(id,data):
 
 #存储
 func Save():
-	if Global.nowList == "setting" or now_list == "" :
+	if Global.nowListName == "setting" or now_list == "" :
 		return
 	var json_data = "{\n"
 	var childs = get_children()

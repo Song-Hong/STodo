@@ -46,7 +46,7 @@ func read_file(path):
 
 #读取一个json文件
 func read_json_file(path):
-	return JSON.stringify(read_file(path))
+	return JSON.parse_string(read_file(path))
 
 #读取一个json文件如果不存在则创建
 func read_json_no_exisit_to_create(path):

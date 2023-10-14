@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://daenueej2h4e0"]
 
-[ext_resource type="Script" path="res://scripts/date.gd" id="1_1vvik"]
+[ext_resource type="Script" path="res://scripts/date/date.gd" id="1_1vvik"]
 [ext_resource type="ButtonGroup" uid="uid://dfgya1wodvu41" path="res://others/buttonGroup/dayListGroup.tres" id="3_wy64t"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u3ghc"]

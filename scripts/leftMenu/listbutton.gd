@@ -4,6 +4,14 @@ extends Button
 #显示提示界面
 var showTip = false
 
+#当前按钮处理事件
+func open_pressed():
+	pass
+
+#按钮退出事件
+func exit_pressed():
+	pass
+
 #初始化连接信号
 func _ready():
 	connect("mouse_entered",Callable(self,"on_mouse_entered"))

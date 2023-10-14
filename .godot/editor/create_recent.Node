@@ -1,10 +1,10 @@
 Control
 Button
+Panel
 Label
 Node
 ColorRect
 Container
-Panel
 OptionButton
 MenuBar
 MenuButton

@@ -14,13 +14,16 @@ func set_singleton():
 
 #像当前场景下添加场景
 func add_scene(scene_name:String):
+	get_parent().add_child(get_scene(scene_name))
+
+#获取场景
+func get_scene(scene_name:String):
 	var scene
-	var root = get_parent()
 	match scene_name:
-		"date"    : scene = preload("res://scenes/date.tscn")   .instantiate()
-		"item"    : scene = preload("res://scenes/item.tscn")   .instantiate()
-		"main"    : scene = preload("res://scenes/main.tscn")   .instantiate()
-		"setting" : scene = preload("res://scenes/setting.tscn").instantiate()
-	if scene!=null:
-		root.add_child(scene)
-	
+		"date"           : scene = preload("res://scenes/date.tscn")          .instantiate()
+		"item"           : scene = preload("res://scenes/item.tscn")          .instantiate()
+		"main"           : scene = preload("res://scenes/main.tscn")          .instantiate()
+		"setting"        : scene = preload("res://scenes/setting.tscn")       .instantiate()
+		"todoItemAreaCM" : scene = preload("res://scenes/todoItemAreaCM.tscn").instantiate()
+		"itemCM"         : scene = preload("res://scenes/itemCM.tscn")        .instantiate()
+	return scene

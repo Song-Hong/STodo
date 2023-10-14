@@ -28,7 +28,7 @@ func frist():
 	DirAccess.make_dir_absolute(dir+"list/")
 	DirAccess.make_dir_absolute(dir+"conf/")
 	saveState()
-	Global.nowList = "Today"
+	Global.nowListName = "Today"
 	
 #加载配置文件
 func loadConf():

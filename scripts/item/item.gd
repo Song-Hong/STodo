@@ -30,7 +30,7 @@ func _ready():
 			IDList[i] = str(Start[i])
 	ID = ID+"%s%s%s%s%s%s"%IDList+str(randi() % 1000)
 
-#当鼠标按下时候,开始窗口跟手
+#当鼠标按下时候,开始跟手
 func _on_button_down():
 	offset = get_global_mouse_position() - position
 	isdown = true
@@ -41,7 +41,7 @@ func _on_button_down():
 		Global.nowLineEditor.focus_mode = Control.FOCUS_ALL
 		IName.text = formattingIName(INameText)
 
-#当鼠标抬起时,停止窗口跟手
+#当鼠标抬起时,停止跟手
 func _on_button_up():
 	isdown = false
 	Global.nowItem = null
@@ -108,6 +108,7 @@ func get_all_data():
 	
 #设置为小尺寸
 func MinSize():
+	#判断是否有开启动画,启用不同的缩小方式
 	if Global.animationState:
 		var tween = get_tree().create_tween()
 		tween.tween_property(self,"scale",Vector2(0.2,0.2),0.3)

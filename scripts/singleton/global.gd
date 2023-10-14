@@ -11,11 +11,23 @@ var io:ioManager
 #时间单例
 var time:timeManager
 
-#菜单管理器
+#UI界面单例
+#右键菜单管理
 var contentMenuManager:Control
 #todoItem管理器
 var todoItemArea:Control
 
+#系统核心数据
+#当前软件版本
+var version:String
+#当前软件类型
+var app_version:String
+
+#用户核心数据
+#是否开启动画特效
+var animationState:bool
+
+#临时变量
 #当前显示提示的列表
 var nowShowTipList:Button
 #当前显示节点的名称
@@ -31,6 +43,3 @@ var nowShowDate:Panel
 #当前编辑的文本编辑器
 var nowLineEditor:LineEdit
 
-#设置
-#是否开启动画特效
-var animationState:bool
