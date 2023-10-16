@@ -77,7 +77,27 @@ func frist():
 	#初始化数据库
 	Global.database.init_database()
 
+#存储当前状态至核心用户文件
+func save_to_core():
+	var json = {}
+	var win_size           =  get_window().size
+	var win_po             = get_window().position
+	#获取当前的版本信息
+	json["version"]        = Global.version 
+	json["app_version"]    = Global.app_version
+	json["default_list"]   = Global.nowListName
+	json["window_size"]    = [win_size[0],win_size[1]]
+	json["window_po"]      = [win_po[0],win_po[1]]
+	json["animationState"] = Global.animationState
+	json["language"]       = TranslationServer.get_locale()
+	#检查版本是否需要更新
+	
+	#存储至文件
+	var content = JSON.stringify(json)
+	Global.io.write_file(Paths.user_conf_core_path,content)
+
 #当软件退出,存储当前状态
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		Global.database.close_db()
+		save_to_core()

@@ -67,3 +67,9 @@ func create_dir(path):
 func create_dir_on_no_exisit(path):
 	if not exisit_dir(path):
 		create_dir(path)
+
+#写入一个文件
+func write_file(path,content):
+	var f = FileAccess.open(path,FileAccess.WRITE)
+	f.store_string(content)
+	f.close()

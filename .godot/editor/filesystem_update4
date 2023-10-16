@@ -18,3 +18,4 @@ res://scripts/contentMenu/Item/deleteTodo.gd
 res://scripts/singleton/core.gd
 res://scripts/leftMenu/leftMenu.gd
 res://scripts/setting/animationSettingOptionButton.gd
+res://scripts/singleton/ioManager.gd
