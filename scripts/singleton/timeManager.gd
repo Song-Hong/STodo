@@ -66,37 +66,37 @@ func get_tomorrow_day_str():
 #获取这周的日期
 func get_now_week():
 	var weeks    = []
-	var days     = get_days_in_year_month(year,month)
+	var days     = Global.time.get_days_in_year_month(year,month)
 	var now_day  = day
 	var now_week = week
 	if week == 0:
-		now_week = 6
-	var start_day = now_day-now_week
+		now_week = 7
+	var start_day = now_day-(now_week-1)
 	var check_day = start_day+7
-	if check_day < days: #当前周就在本月
-		for i in range(7):
-			weeks.append([year,month,start_day+i])
-	elif check_day>days: #当前周横跨本月和下个月
-		var now_month_week_days  = days - start_day
-		var next_month_week_days = 7 - now_month_week_days
-		for i in range(now_month_week_days):
-			weeks.append([year,month,start_day+i])
-		for i in range(next_month_week_days):
-			weeks.append([year,month,i])
-	elif check_day<0:   #当前周横跨本月和上个月
+	if start_day<0:   #当前周横跨本月和上个月
 		var now_month_week_days  = now_day
-		var last_month_week_days = -start_day
+		var last_month_week_days = -start_day+1
 		var now_month = month
 		var now_year = year
 		if now_month == 1:
 			now_month = 12
 			now_year -= 1;
-		var last_month_days = get_days_in_year_month(now_year,now_month)
+		var last_month_days = Global.time.get_days_in_year_month(now_year,now_month)
 		start_day = last_month_days-last_month_week_days
-		for i in range(last_month_week_days):
+		for i in range(last_month_week_days):#上月需要补充的天数
 			weeks.append([year,month,start_day+i])
-		for i in range(now_month_week_days):
-			weeks.append([year,month,i])
+		for i in range(now_month_week_days):#本月需要的天数
+			weeks.append([year,month,i+1])
+	elif check_day < days: #当前周就在本月
+		for i in range(7):
+			weeks.append([year,month,start_day+i])
+	elif check_day>days: #当前周横跨本月和下个月
+		var now_month_week_days  = days - start_day + 1
+		var next_month_week_days = 7 - now_month_week_days
+		for i in range(now_month_week_days):#这个月需要补充的天数
+			weeks.append([year,month,start_day+i])
+		for i in range(next_month_week_days):#下个月需要补充的天数
+			weeks.append([year,month,i+1])
 	return weeks
 
 #获取这周的日期字符串
