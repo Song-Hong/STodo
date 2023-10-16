@@ -14,6 +14,7 @@ func _on_gui_input(event):
 	
 #显示当前的todo页面
 func show_todo(datas):
+	if datas == null: return
 	for data in datas:
 		var item_data = itemdata.new()
 		item_data.parsing(data)

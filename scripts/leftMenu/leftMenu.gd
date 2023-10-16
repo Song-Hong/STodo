@@ -17,7 +17,7 @@ func on_pressed():
 	var btn = group.get_pressed_button()
 	
 	#当重复点击时,返回请求
-	if Global.nowListName == btn.text:
+	if Global.nowListName == btn.name:
 		return
 	
 	#当当前按钮不为空时,调用退出事件,并获取显示的页面
@@ -29,7 +29,7 @@ func on_pressed():
 	
 	#提交给全局变量
 	Global.nowList = btn
-	Global.nowListName = btn.text
+	Global.nowListName = btn.name
 	
 	#获取再一次点击的按钮位置
 	var next_index = group.get_buttons().find(btn)
