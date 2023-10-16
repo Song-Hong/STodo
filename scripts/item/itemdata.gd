@@ -12,38 +12,48 @@ var po        = Vector2(0,0)     #位置
 var size      = Vector2(200,200) #尺寸  
 
 #解析
-func parsing():
-	pass
+func parsing(data):
+	id        = data["id"]
+	iNameText = data["name"]
+	start     = data["start"]
+	end       = data["end"]
+	tags      = data["tags"]
+	task      = data["task"]
+	po        = str2vec2(data["po"])
+	size      = str2vec2(data["size"])
 
 #转为db数据
 func to_db():
-	var values = "`"+str(id)+"`,`"+str(iNameText)+"`,`"+str(start)+"`,`"+str(end)+"`,"
+	#插入语句
+	var insert = "INSERT INTO items (id,name,start,end,tags,task,po,size) VALUES ('"
+	insert    += str(id)        +"','"
+	insert    += str(iNameText) +"','"
+	insert    += str(start)     +"','"
+	insert    += str(end)       +"','"
+	insert    += str(tags)      +"','"
+	insert    += str(task)      +"','"
+	insert    += str(po)        +"','"
+	insert    += str(size)      +"') "
+
+	#更新语句
+	var update = "ON CONFLICT(id) DO UPDATE SET "
+	update    += "name  = '" + str(iNameText) +"',"
+	update    += "start = '" + str(start)     +"',"
+	update    += "end   = '" + str(end)       +"',"
+	update    += "tags  = '" + str(tags)      +"',"
+	update    += "task  = '" + str(task)      +"',"
+	update    += "po    = '" + str(po)        +"',"
+	update    += "size  = '" + str(size)      +"';"
 	
-	#将tag 转为字符串
-	var tagstr = "`"
-	for tag in tags:
-		tagstr+= tag+","
-	if tagstr.ends_with(","):
-		tagstr = tagstr.trim_suffix(",")
-	values+=tagstr+"`,"
-	
-	#将task转为字符串
-	var taskstr = "`"
-	for key in task.keys():
-		var value = task.get(key)
-		taskstr += str(key)+":"+str(value)+","
-	if taskstr.ends_with(","):
-		taskstr = taskstr.trim_suffix(",")
-	values+=taskstr+"`,"
-	
-	#将位置转为字符串
-	values += "`"+str(po[0])+","+str(po[1])+"`,"
-	
-	#将尺寸转为字符串
-	values += "`"+str(size[0])+","+str(size[1])+"`"
-	
-	#拼接sql语句字符串
-	var insert = "REPLACE INTO items (id,name,start,end,tags,task,po,size) VALUES (%s)"%values
-	#var update = "ON DUPLICATE KEY UPDATE "+str(id)+" = VALUES(%s)"%values
-	
-	return insert
+	return insert+update
+
+#字符串转Vector2
+func str2vec2(str)->Vector2:
+	var a = ""
+	var vec  = Vector2(0,0)
+	var strs = str.replace("(", "").replace(")", "").split(",")
+	if len(strs)>=2:
+		var x = int(strs[0])
+		var y = int(strs[1])
+		vec = Vector2(x,y)
+	return vec

@@ -4,8 +4,13 @@ extends Node
 #初始化
 func _ready():
 	load_core()
+	
+	#加载主场景
 	Global.scenes.add_scene("main")
-	Global.animationState = true
+	
+	#加载默认场景的todo节点
+	var data = Global.database.select(Global.nowListName)
+	Global.todoItemArea.show_todo(data)
 	
 #加载核心用户数据
 func load_core():
@@ -67,7 +72,7 @@ func frist():
 	Global.app_version = json["app_version"]
 	
 	#设置当前显示的列表
-	Global.nowListName = "Today"
+	Global.nowListName = "today"
 	
 	#初始化数据库
 	Global.database.init_database()

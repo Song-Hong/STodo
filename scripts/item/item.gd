@@ -40,6 +40,8 @@ func _on_button_up():
 		#Global.todoItemArea.MoveTo(list,ToJson())
 		get_parent().remove_child(self)
 		Global.nowShowTipList.on_mouse_exited()
+	data.po = position
+	save_to_db()
 	
 #当右键点击时,申请显示右键菜单
 func _on_gui_input(event):
@@ -63,13 +65,16 @@ func InitItem(db_data:itemdata):
 	data = db_data
 	
 	#设置到显示节点
-	position = data.po
+	iName.text = data.iNameText
+	position   = data.po
+	size       = data.size
 	
 	#存储
-	var res = Global.database.exec(data.to_db())
-	print(res)
-	
-	#print(Global.database.select_today())
+	save_to_db()
+
+#存储至数据库
+func save_to_db():
+	Global.database.exec(data.to_db())
 
 #设置截止日期
 func SetDeadlineDate(end):
@@ -81,10 +86,6 @@ func GetDeadlineDateStr():
 	var date = deadlineDate.get_end_date()
 	return str(date[0])+str(date[1])+str(date[2])
 
-#获取全部数据
-func get_data():
-	pass
-	
 #设置为小尺寸
 func MinSize():
 	#判断是否有开启动画,启用不同的缩小方式

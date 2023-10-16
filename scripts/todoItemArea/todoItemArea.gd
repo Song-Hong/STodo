@@ -13,11 +13,20 @@ func _on_gui_input(event):
 			Global.contentMenuManager.showContetnMenu("todoItemAreaCM")
 	
 #显示当前的todo页面
-func show_todo(data):
-	print(data)
+func show_todo(datas):
+	for data in datas:
+		var item_data = itemdata.new()
+		item_data.parsing(data)
+		create_todo(item_data)
 
-func create_todo():
-	pass
+#创建节点数据
+func create_todo(data:itemdata):
+	#创建item节点
+	var item = Global.scenes.get_scene("item")
+	add_child(item)
+	
+	#初始化节点数据
+	item.InitItem(data)
 
 #创建一个新的Todo节点
 func create_new_todo():

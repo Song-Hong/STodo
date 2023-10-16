@@ -7,7 +7,7 @@ func _ready():
 #当选项切换时
 func _on_item_selected(index):
 	var value:bool
-	if get_item_text(index) == "True":
+	if get_item_text(index) == "Ture":
 		value = true
 	else:
 		value = false

@@ -6,8 +6,7 @@ var showTip = false
 
 #当前按钮处理事件
 func open_pressed():
-	Global.database.select(name)
-	pass
+	Global.todoItemArea.show_todo(Global.database.select(name))
 
 #按钮退出事件
 func exit_pressed():

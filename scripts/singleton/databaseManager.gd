@@ -24,10 +24,15 @@ func set_singleton():
 		
 #初始化
 func init_database():
-	today_path    = Global.time.get_now_day_str()
-	tomorrow_path = Global.time.get_tomorrow_day_str()
-	week_path     = Global.time.get_now_week_str()
+	today_path    = str(Global.time.get_now_day())
+	tomorrow_path = str(Global.time.get_tomorrow_day())
+	week_path     = str(Global.time.get_now_week())
 	connect_db()
+
+#删除节点
+func delete(id:String):
+	var sql = "DELETE FROM items WHERE id='"+id+"'"
+	return exec(sql)
 
 #根据名称查询
 func select(listname:String):
@@ -56,8 +61,7 @@ func select_week():
 #查询该天信息
 func select_day(date:String):
 	var query = "SELECT * FROM items WHERE end = '%s'"%date
-	db.query(query)
-	return db.query_result
+	return exec(query)
 
 #初始化数据库
 func frist_init_database():
@@ -65,22 +69,18 @@ func frist_init_database():
 	db.path = Paths.user_db_path
 	db.open_db()
 	#创建表格
-	var query = "CREATE TABLE IF NOT EXISTS items (id PRIMARY KEY, name TEXT,start TEXT,end TEXT,tags TEXT,task TEXT,end TEXT,po TEXT,size TEXT)"
+	var query = "CREATE TABLE IF NOT EXISTS items (id PRIMARY KEY,name TEXT,start TEXT,end TEXT,tags TEXT,task TEXT,po TEXT,size TEXT)"
 	db.query(query)
-	print(show_tables())
 	db.close_db()
 	
 #显示全部表格
 func show_tables():
-	db.query("SELECT name FROM sqlite_master WHERE type='table'")
-	return db.query_result
+	return exec("SELECT name FROM sqlite_master WHERE type='table'")
 
 #执行sql语句
 func exec(sql):
 	var exec_state = db.query(sql)
-	return db.error_message
-	#return exec_state
-	#return db.query_result
+	return db.query_result
 
 #连接数据库
 func connect_db():

@@ -6,7 +6,7 @@ extends Panel
 #初始化,连接每一个按钮信号,然后设置初始化按钮
 func _ready():
 	for btn in group.get_buttons():
-		if btn.text == Global.nowListName:
+		if btn.name == Global.nowListName:
 			btn.button_pressed = true
 			Global.nowList = btn
 		btn.connect("pressed",Callable(self,"on_pressed"))
@@ -87,5 +87,6 @@ func show_move(moveDirection):
 	var tween = get_tree().create_tween().set_parallel(true)
 	tween.tween_property(temporarily,"position",Vector2(0,-directionSize),0.3)
 	await tween.tween_property(todoItemArea,"position",Vector2(0,0),0.3).finished
+	await get_tree().create_timer(0.02).timeout
 	for item in temporarily.get_children():
 		temporarily.remove_child(item)
