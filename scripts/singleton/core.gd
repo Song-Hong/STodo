@@ -12,6 +12,7 @@ func _ready():
 	var data = Global.database.select(Global.nowListName)
 	Global.todoItemArea.show_todo(data)
 	
+	
 #加载核心用户数据
 func load_core():
 	if !Global.io.exisit_file(Paths.user_conf_core_path):

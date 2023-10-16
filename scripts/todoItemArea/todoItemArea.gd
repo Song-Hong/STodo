@@ -16,6 +16,7 @@ func _on_gui_input(event):
 func show_todo(datas):
 	if datas == null: return
 	for data in datas:
+		if len(data) == 0: continue
 		var item_data = itemdata.new()
 		item_data.parsing(data)
 		create_todo(item_data)

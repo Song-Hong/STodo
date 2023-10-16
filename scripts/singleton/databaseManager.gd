@@ -26,7 +26,7 @@ func set_singleton():
 func init_database():
 	today_path    = str(Global.time.get_now_day())
 	tomorrow_path = str(Global.time.get_tomorrow_day())
-	week_path     = str(Global.time.get_now_week())
+	week_path     = Global.time.get_now_week()
 	connect_db()
 
 #删除节点
@@ -55,7 +55,8 @@ func select_tomorrow():
 func select_week():
 	var data = []
 	for day in week_path:
-		data.append(select_day(day))
+		for d in select_day(str(day)):
+			data.append(d)
 	return data
 
 #查询该天信息
@@ -77,10 +78,15 @@ func frist_init_database():
 func show_tables():
 	return exec("SELECT name FROM sqlite_master WHERE type='table'")
 
-#执行sql语句
+#执行sql语句,并返回执行结果
 func exec(sql):
 	var exec_state = db.query(sql)
 	return db.query_result
+
+#执行,并返回错误语句
+func err_exec(sql):
+	var exec_state = db.query(sql)
+	return db.error_message
 
 #连接数据库
 func connect_db():

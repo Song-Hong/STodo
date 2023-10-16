@@ -13,6 +13,7 @@ var size      = Vector2(200,200) #尺寸
 
 #解析
 func parsing(data):
+	if len(data) == 0: return
 	id        = data["id"]
 	iNameText = data["name"]
 	start     = data["start"]
