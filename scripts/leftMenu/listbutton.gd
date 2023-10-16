@@ -6,11 +6,14 @@ var showTip = false
 
 #当前按钮处理事件
 func open_pressed():
+	Global.database.select(name)
 	pass
 
 #按钮退出事件
 func exit_pressed():
-	pass
+	var temporarily = $"../../temporarily"
+	for item in Global.todoItemArea.get_children():
+		item.reparent(temporarily)
 
 #初始化连接信号
 func _ready():

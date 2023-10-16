@@ -24,18 +24,20 @@ func set_singleton():
 		
 #初始化
 func init_database():
-	today_path    = Global.time.get_now_day()
-	tomorrow_path = Global.time.get_tomorrow_day()
-	week_path     = Global.time.get_now_week()
+	today_path    = Global.time.get_now_day_str()
+	tomorrow_path = Global.time.get_tomorrow_day_str()
+	week_path     = Global.time.get_now_week_str()
 	connect_db()
 
-#测试类
-func select():
-	var query ="SELECT * FROM items WHERE end = '2023109'"
-	print(query)
-	db.query(query)
-	return db.query_result
-	
+#根据名称查询
+func select(listname:String):
+	match listname:
+		"expired"  : pass
+		"today"    : return select_today()
+		"tomorrow" : return select_tomorrow()
+		"week"     : return select_week()
+	return null
+
 #查询当天数据
 func select_today():
 	return select_day(today_path)
@@ -63,14 +65,22 @@ func frist_init_database():
 	db.path = Paths.user_db_path
 	db.open_db()
 	#创建表格
-	var query = "CREATE TABLE IF NOT EXISTS items (id PRIMARY KEY, name TEXT,task TEXT,po TEXT,tag TEXT,start TEXT,end TEXT,complete INTEGER)"
+	var query = "CREATE TABLE IF NOT EXISTS items (id PRIMARY KEY, name TEXT,start TEXT,end TEXT,tags TEXT,task TEXT,end TEXT,po TEXT,size TEXT)"
 	db.query(query)
+	print(show_tables())
 	db.close_db()
 	
-#插入一个item节点
-func insert_item():
-	var query = "INSERT INTO items VALUES('dasdsa213124','新节点','null','230,220','def','2023109','2023109')"
-	var result = db.query(query)
+#显示全部表格
+func show_tables():
+	db.query("SELECT name FROM sqlite_master WHERE type='table'")
+	return db.query_result
+
+#执行sql语句
+func exec(sql):
+	var exec_state = db.query(sql)
+	return db.error_message
+	#return exec_state
+	#return db.query_result
 
 #连接数据库
 func connect_db():

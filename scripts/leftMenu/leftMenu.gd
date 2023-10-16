@@ -23,19 +23,17 @@ func on_pressed():
 	#当当前按钮不为空时,调用退出事件,并获取显示的页面
 	if Global.nowList != null:
 		Global.nowList.exit_pressed()
+		
+	#获取当前点击的按钮位置
+	var now_index = group.get_buttons().find(Global.nowList)
 	
 	#提交给全局变量
 	Global.nowList = btn
 	Global.nowListName = btn.text
 	
-	#获取当前点击的按钮和之前显示的按钮的相对位置
-	var now_index = 0
-	for tbtn in group.get_buttons():
-		if tbtn.text == Global.nowListName:
-			break
-		now_index += 1
+	#获取再一次点击的按钮位置
 	var next_index = group.get_buttons().find(btn)
-	
+
 	#调用按钮来处理这次点击,并获取需要显示的页面
 	btn.open_pressed()
 	
@@ -72,7 +70,7 @@ func remove(choose_btn):
 			ismove = true
 
 #显示移动画面
-func show_move(moveDirection):
+func show_move(moveDirection):	
 	#判断时向上还是向下移动
 	var directionSize = 0
 	if moveDirection > 0:

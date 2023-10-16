@@ -1,34 +1,21 @@
 #Todo 块拖动
 extends Button
 
+#todo节点必需属性
+var data:itemdata
+
 #内部变量
 var isdown    = false   #检测鼠标是否按下
 var offset              #偏移值
-var ID        = "STodo" #唯一值
-var Start     = []      #开始时间
-var INameText = ""      #当前Item的名称
-var isComplete:bool     #当前任务是否完成
 
 #外部引用
-@export var IName:LineEdit      #名称
+@export var iName:LineEdit      #名称
 @export var Tags:Button         #标签
 @export var deadlineDate:Button #截止日期
 
+#初始化
 func _ready():	
-	#设置时间
-	var time   = Time.get_datetime_dict_from_system()
-	Start = [time.year,time.month,time.day,
-			 time.hour,time.minute,time.second]
-	deadlineDate.set_end_date(time.year,time.month,time.day)
-
-	#设置唯一标识符
-	var IDList = ["","","","","",""]
-	for i in len(Start):
-		if Start[i]/10 < 1:
-			IDList[i] = "0%s"%str(Start[i])
-		else:
-			IDList[i] = str(Start[i])
-	ID = ID+"%s%s%s%s%s%s"%IDList+str(randi() % 1000)
+	pass
 
 #当鼠标按下时候,开始跟手
 func _on_button_down():
@@ -39,7 +26,6 @@ func _on_button_down():
 	if Global.nowLineEditor != null: 
 		Global.nowLineEditor.focus_mode = Control.FOCUS_NONE
 		Global.nowLineEditor.focus_mode = Control.FOCUS_ALL
-		IName.text = formattingIName(INameText)
 
 #当鼠标抬起时,停止跟手
 func _on_button_up():
@@ -51,7 +37,7 @@ func _on_button_up():
 	if Global.nowShowTipList != null and Global.nowShowTipList.text != Global.nowListName:
 		var list = Global.nowShowTipList.text.trim_prefix("Move to\n")
 		position = Vector2(183,22)
-		Global.todoItemArea.MoveTo(list,ToJson())
+		#Global.todoItemArea.MoveTo(list,ToJson())
 		get_parent().remove_child(self)
 		Global.nowShowTipList.on_mouse_exited()
 	
@@ -60,7 +46,7 @@ func _on_gui_input(event):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_RIGHT:
 			Global.nowItem = self
-			Global.contentMenuManager.showContetnMenu("todoItem")
+			Global.contentMenuManager.showContetnMenu("itemCM")
 
 #当获取到输入时,执行跟手操作
 func _input(_event):
@@ -70,16 +56,20 @@ func _input(_event):
 			MinSize()
 		else :
 			NomalSize()
-			
+
 #初始化 
-func InitItem(f_ID,f_Iname,f_Position,f_Tag,f_Start,f_End):
-	ID                 = f_ID
-	IName.text         = formattingIName(f_Iname)
-	INameText          = f_Iname
-	position           = Vector2(f_Position[0],f_Position[1])
-	Tags.text          = str(f_Tag[0])
-	Start              = f_Start
-	deadlineDate.set_end_date(f_End[0],f_End[1],f_End[2])
+func InitItem(db_data:itemdata):
+	#设置当前节点的属性
+	data = db_data
+	
+	#设置到显示节点
+	position = data.po
+	
+	#存储
+	var res = Global.database.exec(data.to_db())
+	print(res)
+	
+	#print(Global.database.select_today())
 
 #设置截止日期
 func SetDeadlineDate(end):
@@ -91,19 +81,8 @@ func GetDeadlineDateStr():
 	var date = deadlineDate.get_end_date()
 	return str(date[0])+str(date[1])+str(date[2])
 
-#转为Json数据
-func ToJson():
-	var json_obj  = {str(ID):{
-					 "name":INameText,
-					 "po":[position.x,position.y],
-					 "tag":["def"],
-					 "start":Start,
-					 "end":deadlineDate.get_end_date()}}
-	var json_data = JSON.stringify(json_obj)
-	return json_data
-	
 #获取全部数据
-func get_all_data():
+func get_data():
 	pass
 	
 #设置为小尺寸
@@ -129,11 +108,11 @@ func NomalSize():
 
 #当名称输入框按钮点击提交时
 func _on_i_name_text_submitted(_new_text):
-	IName.focus_mode = Control.FOCUS_NONE
-	IName.focus_mode = Control.FOCUS_ALL
+	iName.focus_mode = Control.FOCUS_NONE
+	iName.focus_mode = Control.FOCUS_ALL
 	Global.nowLineEditor = null
-	IName.text = formattingIName(INameText)
-	IName.warp_mouse(Vector2(0,0))
+	iName.text = formattingIName(data.iNameText)
+	iName.warp_mouse(Vector2(0,0))
 
 #格式化IName显示的名称
 func formattingIName(content:String):
@@ -143,14 +122,13 @@ func formattingIName(content:String):
 
 #当名称输入框按钮点击时
 func _on_i_name_mouse_entered():
-	Global.nowLineEditor = IName
-	IName.text = INameText
+	Global.nowLineEditor = iName
+	iName.text = data.iNameText
 
 #当输入框文本改变时
 func _on_i_name_text_changed(new_text):
-	INameText = new_text
+	data.iNameText = new_text
 
 #当输入框失去焦点时
 func _on_i_name_focus_exited():
-	IName.text = formattingIName(INameText)
-
+	iName.text = formattingIName(data.iNameText)

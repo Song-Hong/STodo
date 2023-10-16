@@ -1,3 +1,66 @@
-[gd_scene format=3 uid="uid://6d6ahs7fd6js"]
+[gd_scene load_steps=5 format=3 uid="uid://6d6ahs7fd6js"]
 
-[node name="item" type="Node2D"]
+[ext_resource type="Theme" uid="uid://byg4ifogt4eb2" path="res://others/theme/Light/light_item.tres" id="1_5w1ak"]
+[ext_resource type="Script" path="res://scripts/item/item.gd" id="2_wtpp7"]
+[ext_resource type="Script" path="res://scripts/item/deadlineDate.gd" id="3_oqink"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v6fsm"]
+bg_color = Color(0.839216, 0.839216, 0.839216, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="item" type="Button" node_paths=PackedStringArray("iName", "Tags", "deadlineDate")]
+offset_right = 200.0
+offset_bottom = 200.0
+focus_mode = 0
+theme = ExtResource("1_5w1ak")
+script = ExtResource("2_wtpp7")
+iName = NodePath("iName")
+Tags = NodePath("Tags")
+deadlineDate = NodePath("deadlineDate")
+
+[node name="iName" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = -2.0
+offset_bottom = 27.0
+grow_horizontal = 2
+theme = ExtResource("1_5w1ak")
+text = "New Todo"
+
+[node name="Tags" type="Button" parent="."]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 155.0
+offset_right = 45.0
+offset_bottom = 175.0
+theme_override_colors/font_color = Color(0.403922, 0.403922, 0.403922, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_v6fsm")
+text = "Def"
+
+[node name="deadlineDate" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -25.0
+offset_right = -8.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("1_5w1ak")
+text = "Today"
+flat = true
+alignment = 0
+script = ExtResource("3_oqink")
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

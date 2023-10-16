@@ -9,7 +9,7 @@ func _ready():
 	
 #加载核心用户数据
 func load_core():
-	if not Global.io.exisit_file(Paths.user_conf_core_path):
+	if !Global.io.exisit_file(Paths.user_conf_core_path):
 		frist()
 	else :
 		load_core_setting()

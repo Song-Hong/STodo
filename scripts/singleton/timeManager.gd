@@ -24,9 +24,23 @@ func set_singleton():
 	else:
 		get_parent().remove_child(self)
 
-#获取当天的天气
-func get_now_day():
+#获取当天的日期字符串
+func get_now_day_str():
 	return str(year)+str(month)+str(day)
+
+#获取当天的日期
+func get_now_day():
+	return [year,month,day]
+
+#获取当前的实时时间
+func get_now():
+	var time = Time.get_datetime_dict_from_system()
+	return [time.year,time.month,time.day,time.hour,time.minute,time.second]
+
+#获取当前的实时时间字符串
+func get_now_str():
+	var time = Time.get_datetime_dict_from_system()
+	return str(time.year)+str(time.month)+str(time.day)+str(time.hour)+str(time.minute)+str(time.second)
 
 #获取明天的日期
 func get_tomorrow_day():
@@ -42,10 +56,14 @@ func get_tomorrow_day():
 		now_day = 1
 	else:
 		now_day += 1
-	return str(now_year)+str(now_month)+str(now_day)
+	return [now_year,now_month,now_day]
 
+#获取明天的日期字符串
+func get_tomorrow_day_str():
+	var tomorrow = get_tomorrow_day()
+	return str(tomorrow[0])+str(tomorrow[1])+str(tomorrow[2])
 
-#获取本周的数据
+#获取这周的日期
 func get_now_week():
 	var weeks    = []
 	var days     = get_days_in_year_month(year,month)
@@ -57,14 +75,14 @@ func get_now_week():
 	var check_day = start_day+7
 	if check_day < days: #当前周就在本月
 		for i in range(7):
-			weeks.append(str(year)+str(month)+str(start_day+i))
+			weeks.append([year,month,start_day+i])
 	elif check_day>days: #当前周横跨本月和下个月
 		var now_month_week_days  = days - start_day
 		var next_month_week_days = 7 - now_month_week_days
 		for i in range(now_month_week_days):
-			weeks.append(str(year)+str(month)+str(start_day+i))
+			weeks.append([year,month,start_day+i])
 		for i in range(next_month_week_days):
-			weeks.append(str(year)+str(month)+str(i))
+			weeks.append([year,month,i])
 	elif check_day<0:   #当前周横跨本月和上个月
 		var now_month_week_days  = now_day
 		var last_month_week_days = -start_day
@@ -76,10 +94,19 @@ func get_now_week():
 		var last_month_days = get_days_in_year_month(now_year,now_month)
 		start_day = last_month_days-last_month_week_days
 		for i in range(last_month_week_days):
-			weeks.append(str(year)+str(month)+str(start_day+i))
+			weeks.append([year,month,start_day+i])
 		for i in range(now_month_week_days):
-			weeks.append(str(year)+str(month)+str(i))
+			weeks.append([year,month,i])
 	return weeks
+
+#获取这周的日期字符串
+func get_now_week_str():
+	var weeks   = get_now_week()
+	var weekstr = []
+	for data in weeks:
+		weekstr.append(str(data[0])+str(data[1])+str(data[2]))
+	return weekstr
+	
 
 #获取天数胡
 func get_days_in_year_month(now_year,now_month):
@@ -106,3 +133,8 @@ func get_frist_day_week(now_year,now_month):
 		now_year  -= 1
 	return (now_day+2*now_month+3*(now_month+1)/5+ now_year +now_year/4-now_year/100+now_year/400+1)%7
 
+#获取当前节点的唯一ID
+func get_ID():
+	var now_time  = get_now_str()
+	var randomNum = str(randi() % 1000 + 1000)
+	return "STODO" + now_time + str(randomNum)

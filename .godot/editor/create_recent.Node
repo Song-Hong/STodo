@@ -1,13 +1,13 @@
-Control
 Button
-Panel
+LineEdit
+TextEdit
 Label
+Panel
+Control
 Node
 ColorRect
 Container
 OptionButton
 MenuBar
 MenuButton
-LineEdit
-TextEdit
 Sprite2D
