@@ -26,4 +26,5 @@ func get_scene(scene_name:String):
 		"setting"        : scene = preload("res://scenes/setting.tscn")       .instantiate()
 		"todoItemAreaCM" : scene = preload("res://scenes/todoItemAreaCM.tscn").instantiate()
 		"itemCM"         : scene = preload("res://scenes/itemCM.tscn")        .instantiate()
+		"task"           : scene = preload("res://scenes/task.tscn")          .instantiate()
 	return scene

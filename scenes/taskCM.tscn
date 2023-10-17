@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://3w1v18gfakkp"]
+
+[ext_resource type="Theme" uid="uid://cbvr5vood78yd" path="res://others/theme/Light/light_contentMenu.tres" id="1_ovk6o"]
+
+[node name="todoItemAreaCM" type="Panel"]
+offset_right = 100.0
+offset_bottom = 160.0
+theme = ExtResource("1_ovk6o")
+
+[node name="complete" type="Button" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 90.0
+offset_bottom = 28.0
+theme = ExtResource("1_ovk6o")
+text = "11111"
+
+[node name="deleteTodo" type="Button" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 36.0
+offset_right = 90.0
+offset_bottom = 54.0
+theme = ExtResource("1_ovk6o")
+text = "22222"
+
+[connection signal="button_down" from="complete" to="complete" method="_on_button_down"]
+[connection signal="button_down" from="deleteTodo" to="deleteTodo" method="_on_button_down"]

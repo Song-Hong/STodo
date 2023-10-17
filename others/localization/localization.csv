@@ -1,8 +1,7 @@
 keys,en,zh_Hans_CN,zh_HK
 Setting,Setting,设置,設定
-Create Todo,Create Todo,创建任务,創建任務
-Complete,Complete,完成,完成
-Delete Todo,Delete Todo,删除任务,刪除任務
+Create Todo,Create Todo,创建待办,創建待辦
+Delete Todo,Delete Todo,删除待办,刪除待辦
 Move to,Move to,移动至,移動至
 Theme Setting,Theme Setting,主题设置,主題設定
 Light,Light,白天,白天
@@ -12,8 +11,12 @@ Animation,Animation,动画,動畫
 Enable Animation,Enable Animation,启用动画,啟用動畫
 Ture,Ture,开启,開啟
 False,False,关闭,關閉
-New Todo,New Todo,新任务,新任務
+New Todo,New Todo,新待办,新待辦
 Expired,Expired,过期,過期
+Yesterday,Yesterday,昨天,昨天
 Today,Today,今天,今天
 Tomorrow,Tomorrow,明天,明天
 Week,Week,本周,本週
+Create Task,Create Task,创建任务,創建任務
+Delete Task,Delete Task,删除任务,刪除任務
+New Task,New Task,新任务,新任務

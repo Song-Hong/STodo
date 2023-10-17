@@ -35,10 +35,10 @@ func _on_button_up():
 		position = Vector2(165,position.y)
 		NomalSize()
 	if Global.nowShowTipList != null and Global.nowShowTipList.text != Global.nowListName:
-		var list = Global.nowShowTipList.text.trim_prefix("Move to\n")
+		#var list = Global.nowShowTipList.text.trim_prefix("Move to\n")
 		position = Vector2(183,22)
 		#Global.todoItemArea.MoveTo(list,ToJson())
-		get_parent().remove_child(self)
+		#get_parent().remove_child(self)
 		Global.nowShowTipList.on_mouse_exited()
 	data.po = position
 	save_to_db()
@@ -68,10 +68,40 @@ func InitItem(db_data:itemdata):
 	iName.text = data.iNameText
 	position   = data.po
 	size       = data.size
-	
+	for key in data.task.keys():
+		if data.task[key] == null:
+			continue
+		create_task(key,data.task[key])
+		
 	#存储
 	save_to_db()
 
+#创建任务
+func create_task(task_name="",task_state=false):
+	var task = Global.scenes.get_scene("task")
+	$ScrollContainer/VBoxContainer.add_child(task)
+	if task_name == "":
+		task_name = TranslationServer.translate("New Task")
+	task.init_task(task_name,task_state)
+	update_task_to_db()
+	
+#删除任务
+func delete_task():
+	pass
+
+#更新任务节点
+func update_task():
+	var temp_task = {}
+	for task in $ScrollContainer/VBoxContainer.get_children():
+		var task_data = task.to_data()
+		temp_task[str(task_data[0])] = task_data[1]
+	data.task = temp_task
+
+#更新任务节点至数据库
+func update_task_to_db():
+	update_task()
+	var res = Global.database.update_item_task(data.id,str(data.task))
+	
 #存储至数据库
 func save_to_db():
 	Global.database.exec(data.to_db())
@@ -109,11 +139,11 @@ func NomalSize():
 
 #当名称输入框按钮点击提交时
 func _on_i_name_text_submitted(_new_text):
-	iName.focus_mode = Control.FOCUS_NONE
-	iName.focus_mode = Control.FOCUS_ALL
+	Global.tools.unfocus(iName)
 	Global.nowLineEditor = null
 	iName.text = formattingIName(data.iNameText)
 	iName.warp_mouse(Vector2(0,0))
+	save_to_db()
 
 #格式化IName显示的名称
 func formattingIName(content:String):

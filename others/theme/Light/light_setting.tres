@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://dwfbb16l0pg5c"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://dwfbb16l0pg5c"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u3ghc"]
 bg_color = Color(0.0980392, 0.564706, 1, 1)
@@ -54,6 +54,13 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uw3ri"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
 [resource]
 Button/styles/hover = SubResource("StyleBoxFlat_u3ghc")
 Button/styles/normal = SubResource("StyleBoxFlat_oobc2")
@@ -71,3 +78,4 @@ OptionButton/styles/normal = SubResource("StyleBoxFlat_3ohss")
 OptionButton/styles/pressed = SubResource("StyleBoxFlat_wn8mk")
 OptionButton/styles/pressed_mirrored = SubResource("StyleBoxFlat_yl5xo")
 Panel/styles/panel = SubResource("StyleBoxFlat_2h5v2")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_uw3ri")

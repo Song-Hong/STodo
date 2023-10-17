@@ -10,6 +10,8 @@ var scenes:scenesMananger
 var io:ioManager
 #时间单例
 var time:timeManager
+#工具单例
+var tools:toolsManager
 
 #UI界面单例
 #右键菜单管理

@@ -19,7 +19,7 @@ func parsing(data):
 	start     = data["start"]
 	end       = data["end"]
 	tags      = data["tags"]
-	task      = data["task"]
+	task      = JSON.parse_string(data["task"])
 	po        = str2vec2(data["po"])
 	size      = str2vec2(data["size"])
 
@@ -49,10 +49,9 @@ func to_db():
 	return insert+update
 
 #字符串转Vector2
-func str2vec2(str)->Vector2:
-	var a = ""
+func str2vec2(data_str)->Vector2:
 	var vec  = Vector2(0,0)
-	var strs = str.replace("(", "").replace(")", "").split(",")
+	var strs = data_str.replace("(", "").replace(")", "").split(",")
 	if len(strs)>=2:
 		var x = int(strs[0])
 		var y = int(strs[1])

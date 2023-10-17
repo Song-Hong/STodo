@@ -34,6 +34,11 @@ func delete(id:String):
 	var sql = "DELETE FROM items WHERE id='"+id+"'"
 	return exec(sql)
 
+#更新节点的task
+func update_item_task(id:String,task:String):
+	var sql = "UPDATE items SET task = '" + task+"' WHERE ID = '"+id+"';"
+	return exec(sql)
+
 #根据名称查询
 func select(listname:String):
 	match listname:
@@ -73,19 +78,19 @@ func frist_init_database():
 	var query = "CREATE TABLE IF NOT EXISTS items (id PRIMARY KEY,name TEXT,start TEXT,end TEXT,tags TEXT,task TEXT,po TEXT,size TEXT)"
 	db.query(query)
 	db.close_db()
-	
+
 #显示全部表格
 func show_tables():
 	return exec("SELECT name FROM sqlite_master WHERE type='table'")
 
 #执行sql语句,并返回执行结果
 func exec(sql):
-	var exec_state = db.query(sql)
+	db.query(sql)
 	return db.query_result
 
 #执行,并返回错误语句
 func err_exec(sql):
-	var exec_state = db.query(sql)
+	db.query(sql)
 	return db.error_message
 
 #连接数据库

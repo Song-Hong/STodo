@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bss6amyhr520m"]
+[gd_scene load_steps=7 format=3 uid="uid://bss6amyhr520m"]
 
 [ext_resource type="Script" path="res://scripts/singleton/core.gd" id="1_8edo6"]
 [ext_resource type="Script" path="res://scripts/singleton/databaseManager.gd" id="1_f4dub"]
 [ext_resource type="Script" path="res://scripts/singleton/scenesManager.gd" id="3_vx0q1"]
 [ext_resource type="Script" path="res://scripts/singleton/timeManager.gd" id="5_50av0"]
 [ext_resource type="Script" path="res://scripts/singleton/ioManager.gd" id="5_pcmog"]
+[ext_resource type="Script" path="res://scripts/singleton/toolsManager.gd" id="6_75qlc"]
 
 [node name="core" type="Node"]
 script = ExtResource("1_8edo6")
@@ -20,3 +21,6 @@ script = ExtResource("5_pcmog")
 
 [node name="timeManager" type="Node" parent="."]
 script = ExtResource("5_50av0")
+
+[node name="toolsManager" type="Node" parent="."]
+script = ExtResource("6_75qlc")

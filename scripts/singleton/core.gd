@@ -3,15 +3,11 @@ extends Node
 
 #初始化
 func _ready():
+	#加载核心用户数据
 	load_core()
 	
 	#加载主场景
 	Global.scenes.add_scene("main")
-	
-	#加载默认场景的todo节点
-	var data = Global.database.select(Global.nowListName)
-	Global.todoItemArea.show_todo(data)
-	
 	
 #加载核心用户数据
 func load_core():

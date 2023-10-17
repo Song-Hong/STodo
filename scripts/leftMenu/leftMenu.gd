@@ -9,6 +9,7 @@ func _ready():
 		if btn.name == Global.nowListName:
 			btn.button_pressed = true
 			Global.nowList = btn
+			btn.open_pressed()
 		btn.connect("pressed",Callable(self,"on_pressed"))
 
 #当按钮点击的时候

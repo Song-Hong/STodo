@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bslg8ghj3valg"]
+[gd_scene load_steps=28 format=3 uid="uid://bslg8ghj3valg"]
 
 [ext_resource type="Script" path="res://scripts/todoItemArea/todoItemArea.gd" id="2_0nue1"]
 [ext_resource type="Theme" uid="uid://4n68pb8tm75j" path="res://others/theme/Light/light_globa.tres" id="2_bm743"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://scripts/setting/setting.gd" id="8_khf3f"]
 [ext_resource type="Texture2D" uid="uid://dtj35xohop4d1" path="res://others/Icons/max nomal.png" id="9_0abu6"]
 [ext_resource type="Texture2D" uid="uid://dy1xxeb7fv8jp" path="res://others/Icons/max.png" id="10_m0uv3"]
+[ext_resource type="Texture2D" uid="uid://ceqf7jcm8vwmr" path="res://others/Icons/disabled.png" id="12_wwjng"]
 [ext_resource type="Texture2D" uid="uid://ddlo17wowlyle" path="res://others/Icons/close.png" id="16_phy16"]
 [ext_resource type="Texture2D" uid="uid://b5h4xv4c3010s" path="res://others/Icons/close nomal.png" id="16_qd1bo"]
 
@@ -25,6 +26,9 @@ texture = ExtResource("16_phy16")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_a8swn"]
 texture = ExtResource("16_qd1bo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bxj57"]
+texture = ExtResource("12_wwjng")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_tgyfy"]
 texture = ExtResource("7_bradq")
@@ -202,6 +206,7 @@ offset_bottom = 19.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_cjptp")
 theme_override_styles/hover = SubResource("StyleBoxTexture_dc85w")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_a8swn")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bxj57")
 script = ExtResource("3_qwv7e")
 
 [node name="min" type="Button" parent="windowState"]
@@ -213,6 +218,7 @@ offset_bottom = 19.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_tgyfy")
 theme_override_styles/hover = SubResource("StyleBoxTexture_4depu")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_wna6e")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bxj57")
 script = ExtResource("3_qwv7e")
 
 [node name="max" type="Button" parent="windowState"]
@@ -224,4 +230,5 @@ offset_bottom = 19.0
 theme_override_styles/normal = SubResource("StyleBoxTexture_b5dd6")
 theme_override_styles/hover = SubResource("StyleBoxTexture_vy1wu")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_c7wrm")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_bxj57")
 script = ExtResource("3_qwv7e")

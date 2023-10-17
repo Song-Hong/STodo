@@ -7,16 +7,17 @@ var end_day
 
 #当按钮点击时
 func _on_button_down():
-	if Global.nowShowDate != null: 
-		if len(get_children()) > 0:
-			return
-		else:
-			if Global.nowContentMenu != null:
-				Global.nowShowDate.get_parent().remove_child(Global.nowShowDate)
-	var date = preload("res://scenes/date.tscn").instantiate()
-	add_child(date)
-	date.position = Vector2(0,-get_parent().size.y-40)
-	Global.nowShowDate = date
+	pass
+	#if Global.nowShowDate != null: 
+	#	if len(get_children()) > 0:
+	#		return
+	#	else:
+	#		if Global.nowContentMenu != null:
+	#			Global.nowShowDate.get_parent().remove_child(Global.nowShowDate)
+	#var date = Global.scenes.get_scene("date")
+	#add_child(date)
+	#date.position = Vector2(0,-get_parent().size.y-40)
+	#Global.nowShowDate = date
 
 #设置结束的天数
 func set_end_date(year,month,day):
