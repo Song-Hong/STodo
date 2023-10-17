@@ -16,8 +16,8 @@ func exit_pressed():
 
 #初始化连接信号
 func _ready():
-	connect("mouse_entered",Callable(self,"on_mouse_entered"))
-	connect("mouse_exited",Callable(self,"on_mouse_exited"))
+	#connect("mouse_entered",Callable(self,"on_mouse_entered"))
+	#connect("mouse_exited",Callable(self,"on_mouse_exited"))
 	connect("button_down",Callable(self,"on_button_down"))
 
 #当鼠标移动到该按钮上时

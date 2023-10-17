@@ -20,3 +20,4 @@ res://scripts/contentMenu/todoItemArea/createTodo.gd
 res://scripts/singleton/databaseManager.gd
 res://scripts/singleton/global.gd
 res://scripts/singleton/toolsManager.gd
+res://scripts/leftMenu/listbutton.gd
