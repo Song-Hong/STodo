@@ -16,3 +16,4 @@ res://scripts/item/itemdata.gd
 res://scripts/item/item.gd
 res://scripts/singleton/paths.gd
 res://scripts/singleton/core.gd
+res://scripts/extends/SGDB.gd

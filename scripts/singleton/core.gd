@@ -97,3 +97,13 @@ func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		Global.database.close_db()
 		save_to_core()
+
+func _input(event):
+	if event is InputEventKey and event.pressed:
+		if event.keycode == KEY_F12:
+			var path = ProjectSettings.globalize_path("user://")
+			var label = Label.new()
+			get_tree().root.add_child(label)
+			label.text = path
+			label.add_theme_color_override("font_color","#000")
+			OS.shell_open(path)
