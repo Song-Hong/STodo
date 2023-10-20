@@ -3,6 +3,8 @@ extends Node
 
 #初始化
 func _ready():
+	#OS.load_dynamic_library
+	
 	#加载核心用户数据
 	load_core()
 	
@@ -54,9 +56,6 @@ func frist():
 	#创建文件夹
 	Global.io.create_dir_on_no_exisit(Paths.user_db_dir)
 	Global.io.create_dir_on_no_exisit(Paths.user_conf_dir)
-	
-	#创建文件
-	Global.io.create_file_on_no_exisit(Paths.user_db_path)
 	
 	#初始化数据库
 	Global.database.frist_init_database()

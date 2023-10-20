@@ -3,7 +3,7 @@ extends Node
 class_name databaseManager
 
 #数据库
-var db:SQLite
+var db:SGDB
 
 #路径   
 var today_path     #当天任务
@@ -31,13 +31,15 @@ func init_database():
 
 #删除节点
 func delete(id:String):
-	var sql = "DELETE FROM items WHERE id='"+id+"'"
-	return exec(sql)
+	db.delete_row(id)
+
+#更新或覆盖数据
+func replace(id,data):
+	db.replace_row(id,data)
 
 #更新节点的task
 func update_item_task(id:String,task:String):
-	var sql = "UPDATE items SET task = '" + task+"' WHERE ID = '"+id+"';"
-	return exec(sql)
+	db.update_row_set(id,"task",task)
 
 #根据名称查询
 func select(listname:String):
@@ -66,41 +68,20 @@ func select_week():
 
 #查询该天信息
 func select_day(date:String):
-	var query = "SELECT * FROM items WHERE end = '%s'"%date
-	return exec(query)
+	var result = db.select_where("end",date)
+	return result
 
 #初始化数据库
 func frist_init_database():
-	db = SQLite.new() 
-	db.path = Paths.user_db_path
-	db.open_db()
+	db = SGDB.new(Paths.user_db_dir)
 	#创建表格
-	var query = "CREATE TABLE IF NOT EXISTS items (id PRIMARY KEY,name TEXT,start TEXT,end TEXT,tags TEXT,task TEXT,po TEXT,size TEXT)"
-	db.query(query)
-	db.close_db()
-
-#显示全部表格
-func show_tables():
-	return exec("SELECT name FROM sqlite_master WHERE type='table'")
-
-#执行sql语句,并返回执行结果
-func exec(sql):
-	db.query(sql)
-	return db.query_result
-
-#执行,并返回错误语句
-func err_exec(sql):
-	db.query(sql)
-	return db.error_message
+	db.create_table("items")
 
 #连接数据库
 func connect_db():
-	db = SQLite.new() 
-	db.path = Paths.user_db_path
-	db.open_db()
+	db = SGDB.new(Paths.user_db_dir)
+	db.use("items")
 
 #关闭数据库
 func close_db():
-	if db != null:
-		db.close_db()
-		db = null
+	pass

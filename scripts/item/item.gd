@@ -104,7 +104,7 @@ func update_task_to_db():
 	
 #存储至数据库
 func save_to_db():
-	Global.database.exec(data.to_db())
+	Global.database.replace(data.id,data.to_db())
 
 #设置截止日期
 func SetDeadlineDate(end):

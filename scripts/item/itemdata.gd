@@ -13,6 +13,7 @@ var size      = Vector2(200,200) #尺寸
 
 #解析
 func parsing(data):
+	data = JSON.parse_string(data)
 	if len(data) == 0: return
 	id        = data["id"]
 	iNameText = data["name"]
@@ -25,28 +26,16 @@ func parsing(data):
 
 #转为db数据
 func to_db():
-	#插入语句
-	var insert = "INSERT INTO items (id,name,start,end,tags,task,po,size) VALUES ('"
-	insert    += str(id)        +"','"
-	insert    += str(iNameText) +"','"
-	insert    += str(start)     +"','"
-	insert    += str(end)       +"','"
-	insert    += str(tags)      +"','"
-	insert    += str(task)      +"','"
-	insert    += str(po)        +"','"
-	insert    += str(size)      +"') "
-
-	#更新语句
-	var update = "ON CONFLICT(id) DO UPDATE SET "
-	update    += "name  = '" + str(iNameText) +"',"
-	update    += "start = '" + str(start)     +"',"
-	update    += "end   = '" + str(end)       +"',"
-	update    += "tags  = '" + str(tags)      +"',"
-	update    += "task  = '" + str(task)      +"',"
-	update    += "po    = '" + str(po)        +"',"
-	update    += "size  = '" + str(size)      +"';"
-	
-	return insert+update
+	var data = {
+	"id"    : str(id)       ,
+	"name"  : str(iNameText),
+	"start" : str(start)    ,
+	"end"   : str(end)      ,
+	"tags"  : str(tags)     ,
+	"task"  : str(task)     ,
+	"po"    : str(po)       ,
+	"size"  : str(size)     }
+	return data
 
 #字符串转Vector2
 func str2vec2(data_str)->Vector2:
