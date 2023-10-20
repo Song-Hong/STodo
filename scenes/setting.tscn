@@ -1,15 +1,17 @@
 [gd_scene load_steps=7 format=3 uid="uid://rx72jnaod31c"]
 
 [ext_resource type="Theme" uid="uid://dwfbb16l0pg5c" path="res://others/theme/Light/light_setting.tres" id="1_lybfn"]
-[ext_resource type="Texture2D" uid="uid://bpfyjmjl7kc6i" path="res://others/img/lightShowPicture.png" id="2_ic5rp"]
 [ext_resource type="Script" path="res://scripts/setting/localizationSettingOptionButton.gd" id="3_gyq7r"]
 [ext_resource type="Script" path="res://scripts/setting/animationSettingOptionButton.gd" id="4_nq261"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ko0mw"]
+load_path = "res://.godot/imported/lightShowPicture.png-10ab908e44dc527d0a87cd5c6870f6a4.ctex"
+
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k6yvg"]
-texture = ExtResource("2_ic5rp")
+texture = SubResource("CompressedTexture2D_ko0mw")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s8ja6"]
-texture = ExtResource("2_ic5rp")
+texture = SubResource("CompressedTexture2D_ko0mw")
 texture_margin_left = 1.0
 texture_margin_top = 1.0
 texture_margin_right = 1.0
@@ -60,6 +62,7 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("1_lybfn")
+theme_override_font_sizes/font_size = 20
 text = "Theme Setting"
 vertical_alignment = 1
 
@@ -99,23 +102,48 @@ layout_direction = 1
 layout_mode = 2
 theme = ExtResource("1_lybfn")
 
-[node name="Tip" type="Label" parent="VBoxContainer/localization"]
+[node name="Tip" type="BoxContainer" parent="VBoxContainer/localization"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="space" type="BoxContainer" parent="VBoxContainer/localization/Tip"]
+custom_minimum_size = Vector2(14, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+vertical = true
+
+[node name="Tip" type="Label" parent="VBoxContainer/localization/Tip"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("1_lybfn")
 theme_override_font_sizes/font_size = 20
-text = "    Localization"
+text = "Localization"
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/localization"]
+[node name="Label" type="BoxContainer" parent="VBoxContainer/localization"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="space" type="BoxContainer" parent="VBoxContainer/localization/Label"]
+custom_minimum_size = Vector2(34, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+vertical = true
+
+[node name="Label" type="Label" parent="VBoxContainer/localization/Label"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 theme = ExtResource("1_lybfn")
-text = "       Language"
+text = "Language"
 
 [node name="BoxContainer" type="BoxContainer" parent="VBoxContainer/localization"]
 custom_minimum_size = Vector2(120, 60)
@@ -151,23 +179,48 @@ custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 theme = ExtResource("1_lybfn")
 
-[node name="Tip" type="Label" parent="VBoxContainer/animation"]
+[node name="Tip" type="BoxContainer" parent="VBoxContainer/animation"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="space" type="BoxContainer" parent="VBoxContainer/animation/Tip"]
+custom_minimum_size = Vector2(14, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+vertical = true
+
+[node name="Tip" type="Label" parent="VBoxContainer/animation/Tip"]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 theme = ExtResource("1_lybfn")
 theme_override_font_sizes/font_size = 20
-text = "    Animation"
+text = "Animation"
 vertical_alignment = 1
 
-[node name="Label" type="Label" parent="VBoxContainer/animation"]
+[node name="Label" type="BoxContainer" parent="VBoxContainer/animation"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+
+[node name="space" type="BoxContainer" parent="VBoxContainer/animation/Label"]
+custom_minimum_size = Vector2(34, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+vertical = true
+
+[node name="Label" type="Label" parent="VBoxContainer/animation/Label"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 theme = ExtResource("1_lybfn")
-text = "       Enable Animation"
+text = "Enable Animation"
 vertical_alignment = 1
 
 [node name="BoxContainer2" type="BoxContainer" parent="VBoxContainer/animation"]
