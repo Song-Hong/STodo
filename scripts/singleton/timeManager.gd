@@ -8,6 +8,11 @@ var month
 var day
 var week
 
+#缓存
+var today
+var tomorrow
+var weeks
+
 #初始化
 func _init():
 	set_singleton()  #设置单例
@@ -16,7 +21,11 @@ func _init():
 	month    = time.month
 	day      = time.day
 	week     = time.weekday
-
+	today    = get_now_day()
+	tomorrow = get_tomorrow_day()
+	weeks    = get_now_week()
+	
+	
 #设置单例
 func set_singleton():
 	if Global.time == null:
@@ -27,6 +36,26 @@ func set_singleton():
 #获取当天的日期字符串
 func get_now_day_str():
 	return str(year)+str(month)+str(day)
+
+#对比
+func compare(day1,day2):
+	if day1[0] != day2[0]:
+		return false
+	if day1[1] != day2[1]:
+		return false
+	if day1[2] != day2[2]:
+		return false
+	return true
+
+#对比
+func compare_today(time:Array):
+	if time[0] != year:
+		return false
+	if time[1] != month:
+		return false
+	if time[2] != day:
+		return false
+	return true
 
 #获取当天的日期
 func get_now_day():

@@ -1,21 +1,39 @@
-[gd_scene load_steps=7 format=3 uid="uid://rx72jnaod31c"]
+[gd_scene load_steps=17 format=3 uid="uid://rx72jnaod31c"]
 
 [ext_resource type="Theme" uid="uid://dwfbb16l0pg5c" path="res://others/theme/Light/light_setting.tres" id="1_lybfn"]
+[ext_resource type="Texture2D" uid="uid://8venlpdvqyph" path="res://others/Icons/drag.png" id="2_4hpc1"]
+[ext_resource type="Texture2D" uid="uid://3njs0d0n1rnj" path="res://others/img/lightShowPicture.png" id="2_bafkw"]
+[ext_resource type="Texture2D" uid="uid://cvp4d68fvu8jl" path="res://others/Icons/grid.png" id="3_fm1sq"]
 [ext_resource type="Script" path="res://scripts/setting/localizationSettingOptionButton.gd" id="3_gyq7r"]
 [ext_resource type="Script" path="res://scripts/setting/animationSettingOptionButton.gd" id="4_nq261"]
+[ext_resource type="Script" path="res://scripts/setting/layoutModeSetting.gd" id="5_x1v5j"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ko0mw"]
-load_path = "res://.godot/imported/lightShowPicture.png-10ab908e44dc527d0a87cd5c6870f6a4.ctex"
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pm6f4"]
+texture = ExtResource("2_bafkw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0q0qr"]
+texture = ExtResource("2_bafkw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7lk6b"]
+texture = ExtResource("2_bafkw")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_k6yvg"]
-texture = SubResource("CompressedTexture2D_ko0mw")
+texture = ExtResource("2_4hpc1")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_s8ja6"]
-texture = SubResource("CompressedTexture2D_ko0mw")
-texture_margin_left = 1.0
-texture_margin_top = 1.0
-texture_margin_right = 1.0
-texture_margin_bottom = 1.0
+texture = ExtResource("2_4hpc1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ai2ar"]
+texture = ExtResource("2_4hpc1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gmh7i"]
+texture = ExtResource("3_fm1sq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_snuaf"]
+texture = ExtResource("3_fm1sq")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ql46c"]
+texture = ExtResource("3_fm1sq")
 
 [node name="setting" type="ScrollContainer"]
 anchors_preset = 15
@@ -27,6 +45,8 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 follow_focus = true
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -38,7 +58,7 @@ custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 
 [node name="theme" type="PanelContainer" parent="VBoxContainer"]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(0, 210)
 layout_mode = 2
 size_flags_vertical = 0
 theme = ExtResource("1_lybfn")
@@ -67,7 +87,7 @@ text = "Theme Setting"
 vertical_alignment = 1
 
 [node name="LightTheme" type="Control" parent="VBoxContainer/theme"]
-custom_minimum_size = Vector2(200, 180)
+custom_minimum_size = Vector2(200, 190)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
@@ -78,8 +98,9 @@ offset_left = 50.0
 offset_top = 20.0
 offset_right = 200.0
 offset_bottom = 140.0
-theme_override_styles/normal = SubResource("StyleBoxTexture_k6yvg")
-theme_override_styles/hover = SubResource("StyleBoxTexture_s8ja6")
+theme_override_styles/normal = SubResource("StyleBoxTexture_pm6f4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_0q0qr")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7lk6b")
 
 [node name="Label" type="Label" parent="VBoxContainer/theme/LightTheme"]
 layout_mode = 0
@@ -157,6 +178,7 @@ layout_direction = 2
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
+focus_mode = 0
 theme = ExtResource("1_lybfn")
 alignment = 1
 item_count = 3
@@ -234,6 +256,7 @@ custom_minimum_size = Vector2(100, 26)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 4
+focus_mode = 0
 theme = ExtResource("1_lybfn")
 alignment = 1
 item_count = 2
@@ -245,8 +268,97 @@ popup/item_1/text = "False"
 popup/item_1/id = 1
 script = ExtResource("4_nq261")
 
-[node name="VScrollBar" type="VScrollBar" parent="VBoxContainer"]
-visible = false
+[node name="space4" type="BoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="layoutMode" type="PanelContainer" parent="VBoxContainer" node_paths=PackedStringArray("drag_mode", "drag_name", "grid_mode", "grid_name")]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("1_lybfn")
+script = ExtResource("5_x1v5j")
+drag_mode = NodePath("Mode/DragBtn")
+drag_name = NodePath("Mode/DragName")
+grid_mode = NodePath("Mode/GridBtn")
+grid_name = NodePath("Mode/GridName")
+
+[node name="BoxContainer" type="BoxContainer" parent="VBoxContainer/layoutMode"]
+custom_minimum_size = Vector2(160, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="space" type="BoxContainer" parent="VBoxContainer/layoutMode/BoxContainer"]
+custom_minimum_size = Vector2(14, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+vertical = true
+
+[node name="Tip" type="Label" parent="VBoxContainer/layoutMode/BoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme = ExtResource("1_lybfn")
+theme_override_font_sizes/font_size = 20
+text = "Layout Mode"
+vertical_alignment = 1
+
+[node name="Mode" type="Control" parent="VBoxContainer/layoutMode"]
+custom_minimum_size = Vector2(200, 140)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="DragBtn" type="Button" parent="VBoxContainer/layoutMode/Mode"]
+layout_mode = 0
+offset_left = 60.0
+offset_top = 30.0
+offset_right = 120.0
+offset_bottom = 90.0
+pivot_offset = Vector2(30, 30)
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_k6yvg")
+theme_override_styles/hover = SubResource("StyleBoxTexture_s8ja6")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ai2ar")
+
+[node name="DragName" type="Label" parent="VBoxContainer/layoutMode/Mode"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 90.0
+offset_right = 140.0
+offset_bottom = 123.0
+theme_override_colors/font_color = Color(0.0980392, 0.564706, 1, 1)
+text = "Drag Mode"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GridBtn" type="Button" parent="VBoxContainer/layoutMode/Mode"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 30.0
+offset_right = 250.0
+offset_bottom = 90.0
+pivot_offset = Vector2(30, 30)
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_gmh7i")
+theme_override_styles/hover = SubResource("StyleBoxTexture_snuaf")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ql46c")
+
+[node name="GridName" type="Label" parent="VBoxContainer/layoutMode/Mode"]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 90.0
+offset_right = 270.0
+offset_bottom = 123.0
+theme_override_colors/font_color = Color(0.239216, 0.239216, 0.239216, 1)
+text = "Grid Mode"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="space5" type="BoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
 [connection signal="item_selected" from="VBoxContainer/localization/BoxContainer/localizationSettingOptionButton" to="VBoxContainer/localization/BoxContainer/localizationSettingOptionButton" method="_on_item_selected"]

@@ -29,6 +29,9 @@ var app_version:String
 #是否开启动画特效
 var animationState:bool
 
+#布局方式
+var layoutMode = "drag"
+
 #临时变量
 #当前显示提示的列表
 var nowShowTipList:Button

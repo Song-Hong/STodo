@@ -1,8 +1,10 @@
+Control
+Panel
+Button
 BoxContainer
 Node
 HBoxContainer
 VBoxContainer
-Control
 CheckBox
 LineEdit
 ScrollContainer
@@ -10,11 +12,9 @@ PanelContainer
 AspectRatioContainer
 Container
 ColorRect
-Button
 VScrollBar
 TextEdit
 Label
-Panel
 OptionButton
 MenuBar
 MenuButton

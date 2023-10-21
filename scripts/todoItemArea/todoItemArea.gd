@@ -41,11 +41,14 @@ func create_new_todo():
 	data.id        = Global.time.get_ID()
 	data.iNameText = TranslationServer.translate("New Todo")
 	data.start     = Global.time.get_now_str()
-	data.end       = Global.time.get_now_day()
 	data.tags      = ["def"]
 	data.task      = {}
 	data.po        = get_global_mouse_position()
 	
+	match Global.nowListName:
+		"today"    : data.end       = Global.time.get_now_day()
+		"tomorrow" : data.end       = Global.time.get_tomorrow_day()
+		_          : data.end       = Global.time.get_now_day()
 	#初始化节点
 	item.new_item(data)
 

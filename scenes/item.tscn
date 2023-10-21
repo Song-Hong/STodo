@@ -44,6 +44,21 @@ theme_override_colors/font_color = Color(0.403922, 0.403922, 0.403922, 1)
 theme_override_styles/normal = SubResource("StyleBoxFlat_v6fsm")
 text = "Def"
 
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 32.0
+offset_bottom = -58.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
 [node name="deadlineDate" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 2
@@ -60,22 +75,8 @@ flat = true
 alignment = 0
 script = ExtResource("3_oqink")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 32.0
-offset_bottom = -58.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
 [connection signal="button_down" from="." to="." method="_on_button_down"]
 [connection signal="button_up" from="." to="." method="_on_button_up"]
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="text_changed" from="iName" to="." method="_on_i_name_text_changed"]
 [connection signal="button_down" from="deadlineDate" to="deadlineDate" method="_on_button_down"]

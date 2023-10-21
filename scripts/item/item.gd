@@ -19,6 +19,7 @@ func _ready():
 
 #当鼠标按下时候,开始跟手
 func _on_button_down():
+	Global.tools.unfocus(iName)
 	offset = get_global_mouse_position() - position
 	isdown = true
 	Global.nowItem = self
@@ -69,10 +70,12 @@ func InitItem(db_data:itemdata):
 	position   = data.po
 	size       = data.size
 	
-	for key in data.task.keys():
-		if data.task.has(key):
-			create_task(key,data.task[key])
-
+	#绘制任务
+	draw_tasks()
+	
+	#设置结束时间
+	deadlineDate.set_end_date_show(data.end)
+	
 #创建一个新的节点
 func new_item(db_data:itemdata):
 	InitItem(db_data)
@@ -100,8 +103,9 @@ func create_new_task():
 	update_task_to_db([task_name,false])
 	
 #删除任务
-func delete_task():
-	pass
+func delete_task(key):
+	data.task.erase(key)
+	save_to_db()
 
 #更新任务名称
 func update_task_name(old_name,new_name):
@@ -110,25 +114,71 @@ func update_task_name(old_name,new_name):
 		data.task.erase(old_name)
 		update_task_to_db([new_name,state])
 
-
 #更新任务节点
 func update_task(task_data):
 	data.task[task_data[0]] = task_data[1]
-	print(data.task)
 
 #更新任务节点至数据库
 func update_task_to_db(now_task_data):
 	update_task(now_task_data)
 	var res = Global.database.update_item_task(data.id,str(data.task))
+
+#绘制任务
+func draw_tasks():
+	var finish = []
 	
+	#优先绘制未完成的任务
+	for key in data.task.keys():
+		if data.task.has(key):
+			var state = data.task[key]
+			if !state:
+				create_task(key,state)
+			else:
+				finish.append(key)
+
+	#绘制完成的任务
+	for key in finish:
+		create_task(key,true)
+
+#重新更新任务节点
+func redraw_tasks():
+	var tasks = $ScrollContainer/VBoxContainer
+	for task in tasks.get_children():
+		tasks.remove_child(task)
+	draw_tasks() 
+
 #存储至数据库
 func save_to_db():
 	Global.database.replace(data.id,data.to_db())
 
-#设置截止日期
-func SetDeadlineDate(end):
-	if end != null:
-		deadlineDate.text = end
+#更新结束时间
+func update_end_time(time):
+	var can_delete = false
+	var list_name  = Global.nowListName 
+	if list_name == "today":
+		if !Global.time.compare(Global.time.today,time):
+			can_delete = true
+		else:
+			return
+	elif list_name == "tomorrow":
+		if !Global.time.compare(Global.time.tomorrow,time):
+			can_delete = true
+		else:
+			return
+	elif list_name == "week":
+		var is_in_week = false
+		for day in Global.time.weeks:
+			if Global.time.compare(day,time):
+				is_in_week = true
+				break
+		if !is_in_week:can_delete = true
+		data.end = time
+		save_to_db()
+
+	if can_delete:
+		data.end = time
+		save_to_db()
+		get_parent().remove_child(self)
 
 #获取截止时间
 func GetDeadlineDateStr():
@@ -178,7 +228,9 @@ func _on_i_name_mouse_entered():
 #当输入框文本改变时
 func _on_i_name_text_changed(new_text):
 	data.iNameText = new_text
+	save_to_db()
 
 #当输入框失去焦点时
 func _on_i_name_focus_exited():
 	iName.text = formattingIName(data.iNameText)
+

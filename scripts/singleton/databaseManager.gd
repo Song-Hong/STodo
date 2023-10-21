@@ -24,9 +24,9 @@ func set_singleton():
 		
 #初始化
 func init_database():
-	today_path    = str(Global.time.get_now_day())
-	tomorrow_path = str(Global.time.get_tomorrow_day())
-	week_path     = Global.time.get_now_week()
+	today_path    = str(Global.time.today)
+	tomorrow_path = str(Global.time.tomorrow)
+	week_path     = Global.time.weeks
 	connect_db()
 
 #删除节点
@@ -62,7 +62,9 @@ func select_tomorrow():
 func select_week():
 	var data = []
 	for day in week_path:
-		for d in select_day(str(day)):
+		var items = select_day(str(day))
+		if items == null:break
+		for d in items:
 			data.append(d)
 	return data
 

@@ -1,7 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2g3vtd6m275p"]
+[gd_scene load_steps=11 format=3 uid="uid://b2g3vtd6m275p"]
 
 [ext_resource type="Theme" uid="uid://byg4ifogt4eb2" path="res://others/theme/Light/light_item.tres" id="1_5ryb6"]
 [ext_resource type="Script" path="res://scripts/task/task.gd" id="1_ate2n"]
+[ext_resource type="Script" path="res://scripts/task/draw_line.gd" id="3_qlrlg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tk4wx"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h5yt5"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nero2"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ryxhb"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cuyr7"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5w3f6"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gatbs"]
+bg_color = Color(1, 0.392157, 0.376471, 1)
+corner_radius_top_left = 60
+corner_radius_top_right = 60
+corner_radius_bottom_right = 60
+corner_radius_bottom_left = 60
 
 [node name="task" type="HBoxContainer"]
 offset_right = 200.0
@@ -15,6 +41,12 @@ layout_mode = 2
 [node name="taskState" type="CheckBox" parent="."]
 layout_mode = 2
 focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_tk4wx")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_h5yt5")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_nero2")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ryxhb")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_cuyr7")
+theme_override_styles/focus = SubResource("StyleBoxFlat_5w3f6")
 
 [node name="taskName" type="LineEdit" parent="."]
 layout_mode = 2
@@ -22,6 +54,25 @@ size_flags_horizontal = 3
 theme = ExtResource("1_5ryb6")
 flat = true
 
+[node name="Button" type="Button" parent="."]
+custom_minimum_size = Vector2(12, 12)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_styles/hover = SubResource("StyleBoxFlat_gatbs")
+
+[node name="space2" type="BoxContainer" parent="."]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+script = ExtResource("3_qlrlg")
+
 [connection signal="toggled" from="taskState" to="." method="_on_task_state_toggled"]
 [connection signal="text_changed" from="taskName" to="." method="_on_task_name_text_changed"]
 [connection signal="text_submitted" from="taskName" to="." method="_on_task_name_text_submitted"]
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
