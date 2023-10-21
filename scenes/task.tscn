@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2g3vtd6m275p"]
 
-[ext_resource type="Script" path="res://scripts/task.gd" id="1_4ch5s"]
 [ext_resource type="Theme" uid="uid://byg4ifogt4eb2" path="res://others/theme/Light/light_item.tres" id="1_5ryb6"]
+[ext_resource type="Script" path="res://scripts/task/task.gd" id="1_ate2n"]
 
 [node name="task" type="HBoxContainer"]
 offset_right = 200.0
 offset_bottom = 20.0
-script = ExtResource("1_4ch5s")
+script = ExtResource("1_ate2n")
 
 [node name="space" type="BoxContainer" parent="."]
 custom_minimum_size = Vector2(2, 0)
@@ -20,8 +20,8 @@ focus_mode = 0
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_5ryb6")
-text = "New Task"
 flat = true
 
 [connection signal="toggled" from="taskState" to="." method="_on_task_state_toggled"]
+[connection signal="text_changed" from="taskName" to="." method="_on_task_name_text_changed"]
 [connection signal="text_submitted" from="taskName" to="." method="_on_task_name_text_submitted"]

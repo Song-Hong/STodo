@@ -47,5 +47,5 @@ func create_new_todo():
 	data.po        = get_global_mouse_position()
 	
 	#初始化节点
-	item.InitItem(data)
+	item.new_item(data)
 

@@ -68,14 +68,17 @@ func InitItem(db_data:itemdata):
 	iName.text = data.iNameText
 	position   = data.po
 	size       = data.size
-	for key in data.task.keys():
-		if data.task[key] == null:
-			continue
-		create_task(key,data.task[key])
 	
+	for key in data.task.keys():
+		if data.task.has(key):
+			create_task(key,data.task[key])
+
+#创建一个新的节点
+func new_item(db_data:itemdata):
+	InitItem(db_data)
 	#存储
 	save_to_db()
-
+	
 #创建任务
 func create_task(task_name="",task_state=false):
 	var task = Global.scenes.get_scene("task")
@@ -83,23 +86,39 @@ func create_task(task_name="",task_state=false):
 	if task_name == "":
 		task_name = TranslationServer.translate("New Task")
 	task.init_task(task_name,task_state)
-	update_task_to_db()
+
+#创建新的任务
+func create_new_task():
+	var task_name = TranslationServer.translate("New Task")
+	var temp_name = task_name
+	var i         = 1
+	while data.task.has(temp_name):
+		temp_name = task_name + str(i)
+		i+=1
+	task_name    = temp_name
+	create_task(task_name,false)
+	update_task_to_db([task_name,false])
 	
 #删除任务
 func delete_task():
 	pass
 
+#更新任务名称
+func update_task_name(old_name,new_name):
+	if data.task.has(old_name):
+		var state = data.task[old_name]
+		data.task.erase(old_name)
+		update_task_to_db([new_name,state])
+
+
 #更新任务节点
-func update_task():
-	var temp_task = {}
-	for task in $ScrollContainer/VBoxContainer.get_children():
-		var task_data = task.to_data()
-		temp_task[str(task_data[0])] = task_data[1]
-	data.task = temp_task
+func update_task(task_data):
+	data.task[task_data[0]] = task_data[1]
+	print(data.task)
 
 #更新任务节点至数据库
-func update_task_to_db():
-	update_task()
+func update_task_to_db(now_task_data):
+	update_task(now_task_data)
 	var res = Global.database.update_item_task(data.id,str(data.task))
 	
 #存储至数据库

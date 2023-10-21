@@ -17,3 +17,6 @@ res://scripts/extends/SGDB.gd
 res://scripts/leftMenu/listbutton.gd
 res://scripts/todoItemArea/todoItemArea.gd
 res://scripts/item/item.gd
+res://scripts/contentMenu/Item/createTask.gd
+res://scripts/task.gd
+res://scripts/task/task.gd
