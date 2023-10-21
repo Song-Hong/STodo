@@ -19,6 +19,8 @@ func show_todo(datas):
 		if len(data) == 0: continue
 		var item_data = itemdata.new()
 		item_data.parsing(data)
+		if Global.layoutMode == "grid":
+			item_data.po = Global.grid_layout.get_po()
 		create_todo(item_data)
 
 #创建节点数据
@@ -43,7 +45,11 @@ func create_new_todo():
 	data.start     = Global.time.get_now_str()
 	data.tags      = ["def"]
 	data.task      = {}
-	data.po        = get_global_mouse_position()
+	
+	if Global.layoutMode == "grid":
+		data.po    = Global.grid_layout.get_po()
+	else:
+		data.po    = get_global_mouse_position()
 	
 	match Global.nowListName:
 		"today"    : data.end       = Global.time.get_now_day()

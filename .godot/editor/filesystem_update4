@@ -20,3 +20,8 @@ res://others/localization/localization.zh_Hans_CN.translation
 res://others/localization/localization.zh_HK.translation
 res://scripts/setting/layoutModeSetting.gd
 res://scripts/singleton/toolsManager.gd
+res://scripts/todoItemArea/grid_layout.gd
+res://scripts/todoItemArea/gridLayout.gd
+res://scripts/todoItemArea/todoItemArea.gd
+res://scripts/leftMenu/leftMenu.gd
+res://scripts/singleton/core.gd

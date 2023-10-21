@@ -33,6 +33,7 @@ func load_core_setting():
 	var window_po         = json["window_po"]
 	Global.animationState = json["animationState"]
 	TranslationServer.set_locale(json["language"])
+	Global.layoutMode     = json["layoutMode"]
 	
 	#设置当前窗口的位置和大小
 	get_window().size     = Vector2(window_size[0],window_size[1])
@@ -86,6 +87,7 @@ func save_to_core():
 	json["window_po"]      = [win_po[0],win_po[1]]
 	json["animationState"] = Global.animationState
 	json["language"]       = TranslationServer.get_locale()
+	json["layoutMode"]     = Global.layoutMode
 	#检查版本是否需要更新
 	
 	#存储至文件

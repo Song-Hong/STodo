@@ -21,6 +21,9 @@ func on_pressed():
 	if Global.nowListName == btn.name:
 		return
 	
+	#清除当前的网格布局数据
+	Global.grid_layout.clear()
+	
 	#当当前按钮不为空时,调用退出事件,并获取显示的页面
 	if Global.nowList != null:
 		Global.nowList.exit_pressed()

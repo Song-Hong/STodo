@@ -18,6 +18,8 @@ var tools:toolsManager
 var contentMenuManager:Control
 #todoItem管理器
 var todoItemArea:Control
+#网格布局
+var grid_layout:Node
 
 #系统核心数据
 #当前软件版本
