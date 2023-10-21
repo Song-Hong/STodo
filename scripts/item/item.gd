@@ -72,7 +72,7 @@ func InitItem(db_data:itemdata):
 		if data.task[key] == null:
 			continue
 		create_task(key,data.task[key])
-		
+	
 	#存储
 	save_to_db()
 

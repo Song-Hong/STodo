@@ -80,7 +80,10 @@ func frist_init_database():
 #连接数据库
 func connect_db():
 	db = SGDB.new(Paths.user_db_dir)
-	db.use("items")
+	if !db.table_exist("items"):
+		db.create_table_use("items")
+	else:
+		db.use("items")
 
 #关闭数据库
 func close_db():

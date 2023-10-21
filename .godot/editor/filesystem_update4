@@ -11,3 +11,9 @@ res://scenes/date.tscn
 res://scenes/item.tscn
 res://scenes/task.tscn
 res://scenes/taskCM.tscn
+res://scripts/item/itemdata.gd
+res://scripts/singleton/databaseManager.gd
+res://scripts/extends/SGDB.gd
+res://scripts/leftMenu/listbutton.gd
+res://scripts/todoItemArea/todoItemArea.gd
+res://scripts/item/item.gd
