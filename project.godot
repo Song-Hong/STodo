@@ -14,6 +14,7 @@ config/name="ToDoList"
 run/main_scene="res://scenes/core.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 run/low_processor_mode=true
+run/low_processor_mode_sleep_usec=3600
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 0)
 boot_splash/show_image=false
 boot_splash/fullsize=false
@@ -40,7 +41,7 @@ enabled=PackedStringArray()
 [internationalization]
 
 locale/translation_remaps={}
-locale/translations=PackedStringArray("res://others/localization/localization.en.translation", "res://others/localization/localization.zh_Hans_CN.translation", "res://others/localization/localization.zh_HK.translation")
+locale/translations=PackedStringArray("res://others/localization/localization.en.translation", "res://others/localization/localization.eo.translation", "res://others/localization/localization.ja.translation", "res://others/localization/localization.ko.translation", "res://others/localization/localization.zh_Hans_CN.translation", "res://others/localization/localization.zh_HK.translation")
 
 [rendering]
 

@@ -12,6 +12,7 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [node name="item" type="Button" node_paths=PackedStringArray("iName", "Tags", "deadlineDate")]
+custom_minimum_size = Vector2(200, 200)
 offset_right = 200.0
 offset_bottom = 200.0
 focus_mode = 0
@@ -32,6 +33,7 @@ offset_bottom = 27.0
 grow_horizontal = 2
 theme = ExtResource("1_5w1ak")
 text = "New Todo"
+context_menu_enabled = false
 
 [node name="Tags" type="Button" parent="."]
 layout_mode = 0

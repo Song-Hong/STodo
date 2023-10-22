@@ -181,7 +181,7 @@ size_flags_vertical = 4
 focus_mode = 0
 theme = ExtResource("1_lybfn")
 alignment = 1
-item_count = 3
+item_count = 6
 selected = 0
 allow_reselect = true
 popup/item_0/text = "English"
@@ -190,6 +190,12 @@ popup/item_1/text = "简体中文"
 popup/item_1/id = 1
 popup/item_2/text = "繁体中文"
 popup/item_2/id = 2
+popup/item_3/text = "日本語"
+popup/item_3/id = 3
+popup/item_4/text = "한국인"
+popup/item_4/id = 4
+popup/item_5/text = "Esperanto"
+popup/item_5/id = 5
 script = ExtResource("3_gyq7r")
 
 [node name="space3" type="BoxContainer" parent="VBoxContainer"]

@@ -1,8 +1,8 @@
 [gd_scene load_steps=29 format=3 uid="uid://bslg8ghj3valg"]
 
 [ext_resource type="Script" path="res://scripts/todoItemArea/todoItemArea.gd" id="2_0nue1"]
+[ext_resource type="Script" path="res://scripts/main/initManager.gd" id="2_411ek"]
 [ext_resource type="Theme" uid="uid://4n68pb8tm75j" path="res://others/theme/Light/light_globa.tres" id="2_bm743"]
-[ext_resource type="Script" path="res://scripts/todoItemArea/gridLayout.gd" id="2_ha2de"]
 [ext_resource type="StyleBox" uid="uid://5bio58gaq10k" path="res://others/theme/Light/light_leftMenu.tres" id="2_rxhw4"]
 [ext_resource type="Script" path="res://scripts/leftMenu/leftMenu.gd" id="3_7p4oc"]
 [ext_resource type="Script" path="res://scripts/window/appController.gd" id="3_qwv7e"]
@@ -58,10 +58,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_bm743")
-
-[node name="gridLayout" type="Control" parent="."]
-anchors_preset = 0
-script = ExtResource("2_ha2de")
+script = ExtResource("2_411ek")
 
 [node name="background" type="Panel" parent="."]
 clip_contents = true
@@ -88,6 +85,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_0nue1")
+
+[node name="todoItemAreaGrid" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 170.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
 script = ExtResource("2_0nue1")
 
 [node name="contentMenuManager" type="Control" parent="."]

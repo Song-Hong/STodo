@@ -21,9 +21,6 @@ func on_pressed():
 	if Global.nowListName == btn.name:
 		return
 	
-	#清除当前的网格布局数据
-	Global.grid_layout.clear()
-	
 	#当当前按钮不为空时,调用退出事件,并获取显示的页面
 	if Global.nowList != null:
 		Global.nowList.exit_pressed()
@@ -87,10 +84,14 @@ func show_move(moveDirection):
 	var todoItemArea = Global.todoItemArea
 	
 	#开始播放动画
-	todoItemArea.position = Vector2(0,directionSize)
+	var x = 170
+	if Global.nowListName == "setting":
+		x = 0
+	
+	todoItemArea.position = Vector2(x,directionSize)
 	var tween = get_tree().create_tween().set_parallel(true)
 	tween.tween_property(temporarily,"position",Vector2(0,-directionSize),0.3)
-	await tween.tween_property(todoItemArea,"position",Vector2(0,0),0.3).finished
+	await tween.tween_property(todoItemArea,"position",Vector2(x,10),0.3).finished
 	await get_tree().create_timer(0.02).timeout
 	for item in temporarily.get_children():
 		temporarily.remove_child(item)

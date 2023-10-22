@@ -15,7 +15,7 @@ func _on_button_down():
 				Global.nowShowDate.get_parent().remove_child(Global.nowShowDate)
 	var date = Global.scenes.get_scene("date")
 	add_child(date)
-	date.position = Vector2(0,-get_parent().size.y)
+	date.position = Vector2(0,-get_parent().size.y+20)
 	Global.nowShowDate = date
 
 

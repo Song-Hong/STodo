@@ -12,7 +12,14 @@ func set_singleton():
 		Global.tools = self
 	else:
 		get_parent().remove_child(self)
-	
+
+#删除日期
+func del_date_choose():
+	if Global.nowShowDate != null: 
+		var parent = Global.nowShowDate.get_parent()
+		parent.remove_child(Global.nowShowDate)
+		Global.nowShowDate = null
+
 #取消焦点
 func unfocus(node):
 	node.focus_mode = Control.FOCUS_NONE

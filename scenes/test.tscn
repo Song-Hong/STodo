@@ -1,0 +1,59 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsp1xeqafc5ob"]
+
+[ext_resource type="PackedScene" uid="uid://6d6ahs7fd6js" path="res://scenes/item.tscn" id="1_cgx22"]
+
+[node name="testRoot" type="GridContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 2.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 3
+
+[node name="item" parent="." instance=ExtResource("1_cgx22")]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+
+[node name="item2" parent="." node_paths=PackedStringArray("iName", "Tags", "deadlineDate") instance=ExtResource("1_cgx22")]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+iName = NodePath("../item/iName")
+Tags = NodePath("../item/Tags")
+deadlineDate = NodePath("../item/deadlineDate")
+
+[node name="item3" parent="." node_paths=PackedStringArray("iName", "Tags", "deadlineDate") instance=ExtResource("1_cgx22")]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+iName = NodePath("../item/iName")
+Tags = NodePath("../item/Tags")
+deadlineDate = NodePath("../item/deadlineDate")
+
+[node name="item4" parent="." node_paths=PackedStringArray("iName", "Tags", "deadlineDate") instance=ExtResource("1_cgx22")]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+iName = NodePath("../item/iName")
+Tags = NodePath("../item/Tags")
+deadlineDate = NodePath("../item/deadlineDate")
+
+[node name="item5" parent="." node_paths=PackedStringArray("iName", "Tags", "deadlineDate") instance=ExtResource("1_cgx22")]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+iName = NodePath("../item/iName")
+Tags = NodePath("../item/Tags")
+deadlineDate = NodePath("../item/deadlineDate")
+
+[node name="item6" parent="." node_paths=PackedStringArray("iName", "Tags", "deadlineDate") instance=ExtResource("1_cgx22")]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+iName = NodePath("../item/iName")
+Tags = NodePath("../item/Tags")
+deadlineDate = NodePath("../item/deadlineDate")
+
+[node name="item7" parent="." node_paths=PackedStringArray("iName", "Tags", "deadlineDate") instance=ExtResource("1_cgx22")]
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+iName = NodePath("../item/iName")
+Tags = NodePath("../item/Tags")
+deadlineDate = NodePath("../item/deadlineDate")

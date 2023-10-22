@@ -9,6 +9,7 @@ func _ready():
 func _input(event):
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
+			Global.tools.del_date_choose()
 			if Global.nowContentMenu != null:
 				await get_tree().create_timer(0.1).timeout
 				Global.nowContentMenu.visible = false
@@ -24,6 +25,11 @@ func showContetnMenu(Mname):
 	match Mname:
 		"itemCM":         CM = Global.scenes.get_scene("itemCM")
 		"todoItemAreaCM": CM = Global.scenes.get_scene("todoItemAreaCM")
+	
+	#特殊化处理
+	if TranslationServer.get_locale() == "ja":
+		CM.size = Vector2(142,196)
+	
 	#判断右键菜单是否为空,为空则返回
 	if(CM==null):return
 	#更改右键菜单的父物体,并设置位置

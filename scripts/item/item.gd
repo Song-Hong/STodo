@@ -20,6 +20,7 @@ func _ready():
 #当鼠标按下时候,开始跟手
 func _on_button_down():
 	Global.tools.unfocus(iName)
+	Global.tools.del_date_choose()
 	offset = get_global_mouse_position() - position
 	isdown = true
 	Global.nowItem = self

@@ -52,6 +52,7 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_5w3f6")
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_5ryb6")
+context_menu_enabled = false
 flat = true
 
 [node name="Button" type="Button" parent="."]

@@ -5,15 +5,18 @@
 
 [node name="todoItemAreaCM" type="Panel"]
 offset_right = 120.0
-offset_bottom = 192.0
+offset_bottom = 156.0
 theme = ExtResource("1_h08dd")
 
 [node name="createTodo" type="Button" parent="."]
-layout_mode = 0
-offset_left = 10.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 5.0
 offset_top = 10.0
-offset_right = 106.0
-offset_bottom = 28.0
+offset_right = -5.0
+offset_bottom = 27.0
+grow_horizontal = 2
 theme = ExtResource("1_h08dd")
 text = "Create Todo
 "

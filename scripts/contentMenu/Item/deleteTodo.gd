@@ -5,5 +5,5 @@ extends Button
 func _on_button_down():
 	if Global.nowItem != null:
 		Global.database.delete(Global.nowItem.data.id)
-		Global.todoItemArea.remove_child(Global.nowItem)
+		Global.todoItemArea.remove_item(Global.nowItem)
 		Global.nowItem = null
