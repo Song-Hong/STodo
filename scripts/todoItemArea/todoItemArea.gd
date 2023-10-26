@@ -52,10 +52,8 @@ func create_new_todo():
 	data.tags      = ["def"]
 	data.task      = {}
 	
-	if Global.layoutMode == "grid":
-		data.po    = Global.grid_layout.get_po()
-	else:
-		data.po    = get_global_mouse_position()
+	if Global.layoutMode != "grid":
+		data.po    = get_global_mouse_position()-data.size
 	
 	match Global.nowListName:
 		"today"    : data.end = Global.time.get_now_day()

@@ -33,9 +33,9 @@ func _on_button_down():
 func _on_button_up():
 	isdown = false
 	Global.nowItem = null
-	if position.x < 160 : 
-		position = Vector2(165,position.y)
-		NomalSize()
+	#if position.x < 160 : 
+	#	position = Vector2(165,position.y)
+	#	NomalSize()
 	if Global.nowShowTipList != null and Global.nowShowTipList.text != Global.nowListName:
 		#var list = Global.nowShowTipList.text.trim_prefix("Move to\n")
 		position = Vector2(183,22)
@@ -54,12 +54,13 @@ func _on_gui_input(event):
 
 #当获取到输入时,执行跟手操作
 func _input(_event):
-	if isdown:
+	if isdown && (Global.layoutMode != "grid"):
 		position = get_global_mouse_position()-offset
-		if position.x < 160:
-			MinSize()
-		else :
-			NomalSize()
+		NomalSize()
+#		if position.x < 160:
+#			MinSize()
+#		else :
+#			NomalSize()
 
 #初始化 
 func InitItem(db_data:itemdata):

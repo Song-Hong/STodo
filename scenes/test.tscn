@@ -13,46 +13,39 @@ grow_vertical = 2
 columns = 3
 
 [node name="item" parent="." instance=ExtResource("1_cgx22")]
-custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 
 [node name="item2" parent="." node_paths=PackedStringArray("iName", "Tags", "deadlineDate") instance=ExtResource("1_cgx22")]
-custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 iName = NodePath("../item/iName")
 Tags = NodePath("../item/Tags")
 deadlineDate = NodePath("../item/deadlineDate")
 
 [node name="item3" parent="." node_paths=PackedStringArray("iName", "Tags", "deadlineDate") instance=ExtResource("1_cgx22")]
-custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 iName = NodePath("../item/iName")
 Tags = NodePath("../item/Tags")
 deadlineDate = NodePath("../item/deadlineDate")
 
 [node name="item4" parent="." node_paths=PackedStringArray("iName", "Tags", "deadlineDate") instance=ExtResource("1_cgx22")]
-custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 iName = NodePath("../item/iName")
 Tags = NodePath("../item/Tags")
 deadlineDate = NodePath("../item/deadlineDate")
 
 [node name="item5" parent="." node_paths=PackedStringArray("iName", "Tags", "deadlineDate") instance=ExtResource("1_cgx22")]
-custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 iName = NodePath("../item/iName")
 Tags = NodePath("../item/Tags")
 deadlineDate = NodePath("../item/deadlineDate")
 
 [node name="item6" parent="." node_paths=PackedStringArray("iName", "Tags", "deadlineDate") instance=ExtResource("1_cgx22")]
-custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 iName = NodePath("../item/iName")
 Tags = NodePath("../item/Tags")
 deadlineDate = NodePath("../item/deadlineDate")
 
 [node name="item7" parent="." node_paths=PackedStringArray("iName", "Tags", "deadlineDate") instance=ExtResource("1_cgx22")]
-custom_minimum_size = Vector2(200, 200)
 layout_mode = 2
 iName = NodePath("../item/iName")
 Tags = NodePath("../item/Tags")
