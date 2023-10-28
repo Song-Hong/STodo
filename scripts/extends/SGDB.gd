@@ -132,6 +132,20 @@ func select_where(column,where):
 	if check_table(): return
 	return manager.select_where(table_path(db_table_use),column,where)
 
+#查询高于一个数值
+func select_where_high(column,where):
+	if check_table(): return
+	return manager.select_where_high(table_path(db_table_use),column,where)
+
+#查询低于一个数值
+func select_where_low(column,where):
+	if check_table(): return
+	return manager.select_where_low(table_path(db_table_use),column,where)
+
+func select_blur(column,blur):
+	if check_table(): return
+	return manager.select_blur(table_path(db_table_use),column,blur)
+
 #查询一行数据
 func select_row(id):
 	var path = row_path(id)
@@ -227,10 +241,31 @@ class SGDB_Manager:
 		var thread = threads.read(io_call)
 		return thread.wait_to_finish()
 	
-	#带条件查询
+	#查询高于
 	func select_where(path,column,where):
 		var io_call = Callable(io,"select_where")
 		io_call = io_call.bind(path,column,where)
+		var thread = threads.read(io_call)
+		return thread.wait_to_finish()
+		
+	#查询低于
+	func select_where_high(path,column,where):
+		var io_call = Callable(io,"select_where_high")
+		io_call = io_call.bind(path,column,where)
+		var thread = threads.read(io_call)
+		return thread.wait_to_finish()
+	
+	#带条件查询
+	func select_where_low(path,column,where):
+		var io_call = Callable(io,"select_where_low")
+		io_call = io_call.bind(path,column,where)
+		var thread = threads.read(io_call)
+		return thread.wait_to_finish()
+	
+	#模糊查询
+	func select_blur(path,column,blur):
+		var io_call = Callable(io,"select_blur")
+		io_call = io_call.bind(path,column,blur)
 		var thread = threads.read(io_call)
 		return thread.wait_to_finish()
 	
@@ -245,55 +280,54 @@ class SGDB_Manager:
 # 文件流
 ###########################
 class SGDB_IO:
+	###########################
+	# 索引操作
+	###########################
+	func create_index():
+		pass
 	
-	#带条件的查询
-	func select_where(path,column,where):
-		var i_path  = path+column+".sgdb.index"
-		var file    = FileAccess.open(i_path,FileAccess.READ)
-		var json    = JSON.parse_string(file.get_as_text())
-		var ids     = []
-		var result  = []
-		for key in json.keys():
-			if json[key] == where:
-				ids.append(key)
-		for id in ids:
-			var r_path  = path+id+".sgdb.json"
-			var f = FileAccess.open(r_path,FileAccess.READ)
-			result.append(f.get_as_text())
-		return result
+	func delete_index():
+		pass
 	
-	#更新一行数据
-	func update_row_set(path,id,column,value):
-		#更新一行数据
-		var i_path   = path+column+".sgdb.index"
-		var file     = FileAccess.open(i_path,FileAccess.READ)
-		var json     = JSON.parse_string(file.get_as_text())
-		json[id]     = value
-		file         = FileAccess.open(i_path,FileAccess.WRITE)
-		file.store_string(JSON.stringify(json))
-		
-		#更新一行数据
-		var r_path   = path+id+".sgdb.json"
-		file         = FileAccess.open(r_path,FileAccess.READ)
-		json         = JSON.parse_string(file.get_as_text())
-		json[column] = value
-		file         = FileAccess.open(r_path,FileAccess.WRITE)
-		file.store_string(JSON.stringify(json))
-		
-	#读取文件的内容
-	func read(path):
-		var _read = FileAccess.open(path,FileAccess.READ)
-		var value = _read.get_as_text()
-		_read.close()
-		return value
+	func update_index():
+		pass
 	
-	#向文件写入文件流
-	func save(path,content):
-		var _save = FileAccess.open(path,FileAccess.WRITE)
-		_save.store_string(content)
-		_save.close()
+	func select_index():
+		pass
 	
-	#创建文件夹
+	#获取整个索引,如果存在的话
+	func get_index(path,i_name):
+		var i_path = index_path(path,i_name)
+		if FileAccess.file_exists(i_path):
+			var file = FileAccess.open(i_path,FileAccess.READ)
+			return JSON.parse_string(file.get_as_text())
+		else:
+			return null
+	
+	###########################
+	# 数据操作
+	###########################
+	func create_data(path,id):
+		pass
+	
+	func delete_data(path,id):
+		pass
+	
+	func update_data(path,id):
+		pass
+	
+	func get_data(path,id):
+		var r_path  = path+id+".sgdb.json"
+		var f = FileAccess.open(r_path,FileAccess.READ)
+		return f.get_as_text()
+	
+	func get_data_json(path,id):
+		return JSON.parse_string(get_data(path,id))
+	
+	############################################
+	# 文件/文件夹操作
+	############################################
+		#创建文件夹
 	func mkdir(path): 
 		DirAccess.make_dir_absolute(ProjectSettings.globalize_path(path))
 	
@@ -309,35 +343,7 @@ class SGDB_IO:
 			DirAccess.remove_absolute(dir)
 		DirAccess.remove_absolute(path)
 	
-	#创建和更新索引
-	func replace_index(path,id,data):
-		for key in data.keys():
-			var i_path = path+key+".sgdb.index"
-			if !FileAccess.file_exists(i_path):
-				var f = FileAccess.open(i_path,FileAccess.WRITE)
-				f.store_string("{}")
-			var file = FileAccess.open(i_path,FileAccess.READ)
-			var json = JSON.parse_string(file.get_as_text())
-			json[id] = data[key]
-			file     = FileAccess.open(i_path,FileAccess.WRITE)
-			file.store_string(JSON.stringify(json))
-	
-	#删除表一行的索引
-	func delete_index_row(path,id):
-		var f = FileAccess.open(path+id+".sgdb.json",FileAccess.READ)
-		var data = JSON.parse_string(f.get_as_text())
-		for key in data.keys():
-			var i_path = path+key+".sgdb.index"
-			if !FileAccess.file_exists(i_path):
-				return
-			var file = FileAccess.open(i_path,FileAccess.READ)
-			var json = JSON.parse_string(file.get_as_text())
-			json.erase(id)
-			var content = JSON.stringify(json)
-			file =  FileAccess.open(i_path,FileAccess.WRITE)
-			file.store_string(content)
-	
-	#获取当前目录下的全部文件,包含子文件
+		#获取当前目录下的全部文件,包含子文件
 	func get_all_files(dir_path):
 		var dirs  = DirAccess.open(dir_path)
 		var files = []
@@ -378,6 +384,205 @@ class SGDB_IO:
 	#文件是否存在
 	func exist_file(path):
 		return FileAccess.file_exists(path)
+	
+	############################################
+	# 工具方法
+	############################################
+	func index_path(path,column):
+		return path+column+".sgdb.index"
+	
+	func ids_to_result(path,ids):
+		var result = []
+		for id in ids:
+			result.append(get_data(path,id))
+		return result
+	
+	############################################
+	# 模糊查询操作
+	############################################
+	func _select_blur_po(blur:String)->int:
+		if !blur.contains("%"):
+			return -1
+		
+		#获取长度及通配符位置
+		var index     = blur.find("%")
+		var blur_len  = len(blur)-1
+		
+		#获取通配符的位置
+		if  index == 0:         #通配符在行尾
+			return 2
+		elif index == blur_len: #通配符在行首
+			return 0
+		else:                   #通配符在行中
+			return 1
+	
+	#查询从行首的位置
+	func _select_blur_with_begin(path,blur,keys,value):
+		if len(keys) != len(value): return null
+		var ids = []
+		for i in range(len(value)):
+			var val = value[i]
+			if val.begins_with(blur):
+				ids.append(keys[i])
+		return ids_to_result(path,ids)
+	
+	#
+	func _select_blur_with_end(path,blur,keys,value):
+		if len(keys) != len(value): return null
+		var ids = []
+		for i in range(len(value)):
+			var val = str(value[i])
+			var key = keys[i]
+			
+			if end_with(val,blur):
+				ids.append(key)
+				
+			#if val.end_with(blur):
+			#	ids.append(key)
+		return ids_to_result(path,ids)
+	
+	func end_with(text:String,value:String)->bool:
+		return text.substr(len(text)-len(value)) == value
+	
+	#查询
+	func _select_blur_with_center(path,blurs,keys,value):
+		if len(keys) != len(value): return null
+		var ids = []
+		for i in range(len(value)):
+			var val = value[i]
+			if val.start_with(blurs[0]) && val.end_with(blurs[1]):
+				ids.append(keys[i])
+		return ids_to_result(path,ids)
+		
+	#模糊查询id
+	func select_blur_id(path,blur:String):
+		pass
+	
+	#模糊查询列
+	func select_blur(path,column,blur:String):
+		var index = get_index(path,column)
+		var ind_k = index.keys()
+		var ind_v = index.values()
+		match  _select_blur_po(blur):
+			-1: return ""
+			0 : return _select_blur_with_begin(path,blur.trim_suffix("%"),ind_k,ind_v)
+			1 : return _select_blur_with_center(path,blur.split("%"),ind_k,ind_v)
+			2 : return _select_blur_with_end(path,blur.trim_prefix("%"),ind_k,ind_v)
+	
+	#综合性搜索
+	func select(id): 
+		id = str(id)
+		if id.contains("%"):
+			pass
+		pass
+	
+	#查询高于
+	func select_where_high(path,column,where):
+		var i_path  = path+column+".sgdb.index"
+		var file = FileAccess.open(i_path,FileAccess.READ)
+		var json    = JSON.parse_string(file.get_as_text())
+		var ids     = []
+		var result  = []
+		for key in json.keys():
+			if int(json[key]) > int(where):
+				ids.append(key)
+		for id in ids:
+			var r_path  = path+id+".sgdb.json"
+			var f = FileAccess.open(r_path,FileAccess.READ)
+			result.append(f.get_as_text())
+		return result
+	
+	#查询低于
+	func select_where_low(path,column,where):
+		var i_path  = path+column+".sgdb.index"
+		var file = FileAccess.open(i_path,FileAccess.READ)
+		var json    = JSON.parse_string(file.get_as_text())
+		var ids     = []
+		var result  = []
+		for key in json.keys():
+			if int(json[key]) < int(where):
+				ids.append(key)
+		for id in ids:
+			var r_path  = path+id+".sgdb.json"
+			var f = FileAccess.open(r_path,FileAccess.READ)
+			result.append(f.get_as_text())
+		return result
+	
+	#带条件的查询
+	func select_where(path,column,where):
+		var i_path  = path+column+".sgdb.index"
+		var file = FileAccess.open(i_path,FileAccess.READ)
+		var json    = JSON.parse_string(file.get_as_text())
+		var ids     = []
+		var result  = []
+		for key in json.keys():
+			if json[key] == where:
+				ids.append(key)
+		for id in ids:
+			var r_path  = path+id+".sgdb.json"
+			var f = FileAccess.open(r_path,FileAccess.READ)
+			result.append(f.get_as_text())
+		return result
+	
+	
+	
+	#更新一行数据
+	func update_row_set(path,id,column,value):
+		#更新一行数据
+		var i_path   = path+column+".sgdb.index"
+		var file     = FileAccess.open(i_path,FileAccess.READ)
+		var json     = JSON.parse_string(file.get_as_text())
+		json[id]     = value
+		file         = FileAccess.open(i_path,FileAccess.WRITE)
+		file.store_string(JSON.stringify(json))
+		
+		#更新一行数据
+		var r_path   = path+id+".sgdb.json"
+		file         = FileAccess.open(r_path,FileAccess.READ)
+		json         = JSON.parse_string(file.get_as_text())
+		json[column] = value
+		file         = FileAccess.open(r_path,FileAccess.WRITE)
+		file.store_string(JSON.stringify(json))
+		
+	#读取文件的内容
+	func read(path):
+		var _read = FileAccess.open(path,FileAccess.READ)
+		var value = _read.get_as_text()
+		_read.close()
+		return value
+	
+	#向文件写入文件流
+	func save(path,content):
+		var _save = FileAccess.open(path,FileAccess.WRITE)
+		_save.store_string(JSON.stringify(content))
+		_save.close()
+	
+	#创建和更新索引
+	func replace_index(path,id,data):
+		for key in data.keys():
+			var i_path = path+key+".sgdb.index"
+			if !FileAccess.file_exists(i_path):
+				var f = FileAccess.open(i_path,FileAccess.WRITE)
+				f.store_string("{}")
+			var file = FileAccess.open(i_path,FileAccess.READ_WRITE)
+			var json = JSON.parse_string(file.get_as_text())
+			json[id] = data[key]
+			file.store_string(JSON.stringify(json))
+	
+	#删除表一行的索引
+	func delete_index_row(path,id):
+		var f = FileAccess.open(path+id+".sgdb.json",FileAccess.READ)
+		var data = JSON.parse_string(f.get_as_text())
+		for key in data.keys():
+			var i_path = path+key+".sgdb.index"
+			if !FileAccess.file_exists(i_path):
+				return
+			var file = FileAccess.open(i_path,FileAccess.READ)
+			var json = JSON.parse_string(file.get_as_text())
+			json.erase(id)
+			var content = JSON.stringify(json)
+			file =  FileAccess.open(i_path,FileAccess.WRITE)
+			file.store_string(content)
 
 ###########################
 # 多线程管理
